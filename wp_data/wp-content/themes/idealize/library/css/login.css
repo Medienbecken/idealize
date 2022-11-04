@@ -1,0 +1,161 @@
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Login Stylesheet
+
+This stylesheet is loaded (if admin.php is setup in your
+functions file) on the login page. This way you can style
+the login page. It won't affect any other page, admin or front-end.
+
+For more info, check out the codex:
+http://codex.wordpress.org/Creating_Admin_Themes
+
+******************************************************************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Variables
+
+Here is where we declare all our variables like colors, fonts,
+base values, and defaults. We want to make sure this file ONLY
+contains variables that way our files don't get all messy.
+No one likes a mess.
+
+******************************************************************/
+/*********************
+COLORS
+Need help w/ choosing your colors? Try this site out:
+http://0to255.com/
+*********************/
+/*InduKo Brand Colors */
+/*Theme defaults */
+/*
+Here's a great tutorial on how to
+use color variables properly:
+http://sachagreif.com/sass-color-variables/
+*/
+/* line 18, ../scss/login.scss */
+body.login {
+  background-color: #182458;
+}
+/* line 21, ../scss/login.scss */
+body.login::before {
+  position: absolute;
+  right: 10px;
+  width: 160px;
+  height: 50px;
+  background: url(../images/hhn-logo.png) no-repeat top right;
+  background-size: contain;
+  display: block;
+  content: '';
+}
+
+/* line 35, ../scss/login.scss */
+#login {
+  width: 651px;
+}
+
+/* the form box */
+/* line 44, ../scss/login.scss */
+#loginform {
+  max-width: 320px;
+  margin-left: 8px;
+  padding: 26px 24px 55px !important;
+  font-weight: normal;
+  background: #6a76a4 !important;
+  border: none !important;
+  border-radius: 25px;
+  box-shadow: none;
+  color: white;
+  overflow: visible;
+}
+/* line 57, ../scss/login.scss */
+#loginform .input {
+  background: #182458;
+  border-radius: 35px;
+  border: none;
+  color: white;
+}
+/* line 64, ../scss/login.scss */
+#loginform::before {
+  position: absolute;
+  top: -60px;
+  right: -280px;
+  width: 250px;
+  height: 250px;
+  background: url(../images/bulb.png) no-repeat top right;
+  background-size: contain;
+  display: block;
+  content: '';
+}
+
+/*
+This is the Wordpress logo in the admin area.
+You'll have to load your own images and mess
+with the width and height.
+*/
+/* line 82, ../scss/login.scss */
+.login h1 a {
+  background: url(../images/login-logo.png) no-repeat top center;
+  /* make sure to replace this! */
+  width: 651px;
+  height: 189px;
+  text-indent: -9999px;
+  overflow: hidden;
+  padding-bottom: 15px;
+  display: block;
+}
+
+/* line 95, ../scss/login.scss */
+form {
+  max-width: 320px;
+  margin-left: 8px;
+  padding: 26px 24px 46px;
+  font-weight: normal;
+  background: white;
+  border: 1px solid #E5E5E5;
+  border-radius: 3px;
+  box-shadow: none;
+}
+
+/* line 106, ../scss/login.scss */
+body form .input {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", sans-serif;
+  font-weight: 200;
+  font-size: 24px;
+  width: 97%;
+  padding: 3px;
+  margin-top: 2px;
+  margin-right: 6px;
+  margin-bottom: 16px;
+  border: 1px solid #E5E5E5;
+  background: #FBFBFB;
+  outline: none;
+  box-shadow: inset 1px 1px 2px rgba(200, 200, 200, 0.2);
+}
+
+/*
+You'll have to override some of the default styles
+but since we're referencing the id, it should be easy.
+*/
+/* login button*/
+/* line 129, ../scss/login.scss */
+.button-primary {
+  border: none !important;
+  border-radius: 25px !important;
+  background: #dacd56 !important;
+}
+
+/*
+	hide the registration link
+*/
+/* line 139, ../scss/login.scss */
+#nav, #backtoblog {
+  display: none;
+}
+
+/*
+retina login logo
+*/

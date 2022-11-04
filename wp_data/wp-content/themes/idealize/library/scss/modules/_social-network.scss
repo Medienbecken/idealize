@@ -1,0 +1,136 @@
+.container {
+	width: 49%;
+	text-align: right;
+	display: inline-block;
+
+	.btn {
+		display: inline-block;
+		width: 30px;
+		height: 30px;
+		background: #fff;
+		box-shadow: 0 5px 15px -5px #aaa;
+		margin: 1px;
+		border-radius: 30%;
+		overflow: hidden;
+		position: relative;
+		text-align: center;
+		text-decoration: none;
+		color: #42d2ff;
+
+		i {
+			font-family: 'FontAwesome';
+			position: relative;
+			z-index: 4;
+			font-size: 1.2em;
+			transition: 0.3s ease-in-out;
+		}
+	
+	}
+
+	.fa-github {
+		color: #383838;
+	}
+
+	.gh::before {
+		content: "";
+		position: absolute;
+		width: 120%;
+		height: 120%;
+		background: linear-gradient(#7e7e7e, #3a3a3a);
+		transform: rotate(45deg);
+		left: -110%;
+		top: 90%;
+	}
+
+	.fa-linkedin {
+		color: #0a66c2;
+	}
+
+	.in::before {
+		content: "";
+		position: absolute;
+		width: 120%;
+		height: 120%;
+		background: linear-gradient(#2391ff, #0059b3);
+		transform: rotate(45deg);
+		left: -110%;
+		top: 90%;
+	}
+
+	.fa-instagram {
+		color: #e33d68;
+	}
+
+	.ig::before {
+		content: "";
+		position: absolute;
+		width: 120%;
+		height: 120%;
+		background: radial-gradient(circle at 60% 100%, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+		transform: rotate(45deg);
+		left: -110%;
+		top: 90%;
+	}
+
+	.fa-twitter {
+		color: #00c6ff;
+	}
+
+	.tw::before {
+		content: "";
+		position: absolute;
+		width: 120%;
+		height: 120%;
+		background: linear-gradient(#00c6ff, #0072ff);
+		transform: rotate(45deg);
+		left: -110%;
+		top: 90%;
+	}
+
+	.fa-youtube {
+		color: #ff0000;
+	}
+
+	.yt::before {
+		content: "";
+		position: absolute;
+		width: 120%;
+		height: 120%;
+		background: linear-gradient(#ff4949, #ff0000);
+		transform: rotate(45deg);
+		left: -110%;
+		top: 90%;
+	}
+
+}
+ 
+ 
+
+
+.container .btn:hover i {
+	color: #fff;
+	transform: scale(1.4);
+}
+
+.container .btn:hover::before {
+	animation: onHover 0.7s 1;
+	left: -10%;
+	top: -10%;
+}
+
+@keyframes onHover {
+	0% {
+		left: -110%;
+		top: 90%;
+	}
+
+	50% {
+		left: 10%;
+		top: -30%;
+	}
+
+	100% {
+		top: -10%;
+		left: -10%;
+	}
+}

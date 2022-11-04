@@ -1,0 +1,6700 @@
+@charset "UTF-8";
+/*! Made with Bones: http://themble.com/bones :) */
+/******************************************************************
+Site Name: Idealize
+Author: Benjamin Gierlich
+
+Stylesheet: Main Stylesheet
+
+Here's where the magic happens. Here, you'll see we are calling in
+the separate media queries. The base mobile goes outside any query
+and is called at the beginning, after that we call the rest
+of the styles inside media queries.
+
+Helpful articles on Sass file organization:
+http://thesassway.com/advanced/modular-css-naming-conventions
+
+******************************************************************/
+/*********************
+IMPORTING PARTIALS
+These files are needed at the beginning so that we establish all
+our mixins, functions, and variables that we'll be using across
+the whole project.
+*********************/
+/*!
+ *  Font Awesome 4.7.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/* FONT PATH
+ * -------------------------- */
+@font-face {
+  font-family: 'FontAwesome';
+  src: url("../fonts/fontawesome-webfont.eot?v=4.7.0");
+  src: url("../fonts/fontawesome-webfont.eot?#iefix&v=4.7.0") format("embedded-opentype"), url("../fonts/fontawesome-webfont.woff2?v=4.7.0") format("woff2"), url("../fonts/fontawesome-webfont.woff?v=4.7.0") format("woff"), url("../fonts/fontawesome-webfont.ttf?v=4.7.0") format("truetype"), url("../fonts/fontawesome-webfont.svg?v=4.7.0#fontawesomeregular") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+/* line 4, ../scss/fa-scss/_core.scss */
+.fa {
+  display: inline-block;
+  font: normal normal normal 14px/1 FontAwesome;
+  font-size: inherit;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* makes the font 33% larger relative to the icon container */
+/* line 5, ../scss/fa-scss/_larger.scss */
+.fa-lg {
+  font-size: 1.33333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+
+/* line 10, ../scss/fa-scss/_larger.scss */
+.fa-2x {
+  font-size: 2em;
+}
+
+/* line 11, ../scss/fa-scss/_larger.scss */
+.fa-3x {
+  font-size: 3em;
+}
+
+/* line 12, ../scss/fa-scss/_larger.scss */
+.fa-4x {
+  font-size: 4em;
+}
+
+/* line 13, ../scss/fa-scss/_larger.scss */
+.fa-5x {
+  font-size: 5em;
+}
+
+/* line 3, ../scss/fa-scss/_fixed-width.scss */
+.fa-fw {
+  width: 1.28571em;
+  text-align: center;
+}
+
+/* line 4, ../scss/fa-scss/_list.scss */
+.fa-ul {
+  padding-left: 0;
+  margin-left: 2.14286em;
+  list-style-type: none;
+}
+/* line 8, ../scss/fa-scss/_list.scss */
+.fa-ul > li {
+  position: relative;
+}
+
+/* line 10, ../scss/fa-scss/_list.scss */
+.fa-li {
+  position: absolute;
+  left: -2.14286em;
+  width: 2.14286em;
+  top: 0.14286em;
+  text-align: center;
+}
+/* line 16, ../scss/fa-scss/_list.scss */
+.fa-li.fa-lg {
+  left: -1.85714em;
+}
+
+/* line 4, ../scss/fa-scss/_bordered-pulled.scss */
+.fa-border {
+  padding: .2em .25em .15em;
+  border: solid 0.08em #eee;
+  border-radius: .1em;
+}
+
+/* line 10, ../scss/fa-scss/_bordered-pulled.scss */
+.fa-pull-left {
+  float: left;
+}
+
+/* line 11, ../scss/fa-scss/_bordered-pulled.scss */
+.fa-pull-right {
+  float: right;
+}
+
+/* line 14, ../scss/fa-scss/_bordered-pulled.scss */
+.fa.fa-pull-left {
+  margin-right: .3em;
+}
+/* line 15, ../scss/fa-scss/_bordered-pulled.scss */
+.fa.fa-pull-right {
+  margin-left: .3em;
+}
+
+/* Deprecated as of 4.4.0 */
+/* line 19, ../scss/fa-scss/_bordered-pulled.scss */
+.pull-right {
+  float: right;
+}
+
+/* line 20, ../scss/fa-scss/_bordered-pulled.scss */
+.pull-left {
+  float: left;
+}
+
+/* line 23, ../scss/fa-scss/_bordered-pulled.scss */
+.fa.pull-left {
+  margin-right: .3em;
+}
+/* line 24, ../scss/fa-scss/_bordered-pulled.scss */
+.fa.pull-right {
+  margin-left: .3em;
+}
+
+/* line 4, ../scss/fa-scss/_animated.scss */
+.fa-spin {
+  -webkit-animation: fa-spin 2s infinite linear;
+  animation: fa-spin 2s infinite linear;
+}
+
+/* line 9, ../scss/fa-scss/_animated.scss */
+.fa-pulse {
+  -webkit-animation: fa-spin 1s infinite steps(8);
+  animation: fa-spin 1s infinite steps(8);
+}
+
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+/* line 4, ../scss/fa-scss/_rotated-flipped.scss */
+.fa-rotate-90 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=1)";
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+/* line 5, ../scss/fa-scss/_rotated-flipped.scss */
+.fa-rotate-180 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2)";
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+/* line 6, ../scss/fa-scss/_rotated-flipped.scss */
+.fa-rotate-270 {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=3)";
+  -webkit-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+
+/* line 8, ../scss/fa-scss/_rotated-flipped.scss */
+.fa-flip-horizontal {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0, mirror=1)";
+  -webkit-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+
+/* line 9, ../scss/fa-scss/_rotated-flipped.scss */
+.fa-flip-vertical {
+  -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=2, mirror=1)";
+  -webkit-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+
+/* line 14, ../scss/fa-scss/_rotated-flipped.scss */
+:root .fa-rotate-90,
+:root .fa-rotate-180,
+:root .fa-rotate-270,
+:root .fa-flip-horizontal,
+:root .fa-flip-vertical {
+  filter: none;
+}
+
+/* line 4, ../scss/fa-scss/_stacked.scss */
+.fa-stack {
+  position: relative;
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  line-height: 2em;
+  vertical-align: middle;
+}
+
+/* line 12, ../scss/fa-scss/_stacked.scss */
+.fa-stack-1x, .fa-stack-2x {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* line 18, ../scss/fa-scss/_stacked.scss */
+.fa-stack-1x {
+  line-height: inherit;
+}
+
+/* line 19, ../scss/fa-scss/_stacked.scss */
+.fa-stack-2x {
+  font-size: 2em;
+}
+
+/* line 20, ../scss/fa-scss/_stacked.scss */
+.fa-inverse {
+  color: #fff;
+}
+
+/* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
+   readers do not read off random characters that represent icons */
+/* line 4, ../scss/fa-scss/_icons.scss */
+.fa-glass:before {
+  content: "";
+}
+
+/* line 5, ../scss/fa-scss/_icons.scss */
+.fa-music:before {
+  content: "";
+}
+
+/* line 6, ../scss/fa-scss/_icons.scss */
+.fa-search:before {
+  content: "";
+}
+
+/* line 7, ../scss/fa-scss/_icons.scss */
+.fa-envelope-o:before {
+  content: "";
+}
+
+/* line 8, ../scss/fa-scss/_icons.scss */
+.fa-heart:before {
+  content: "";
+}
+
+/* line 9, ../scss/fa-scss/_icons.scss */
+.fa-star:before {
+  content: "";
+}
+
+/* line 10, ../scss/fa-scss/_icons.scss */
+.fa-star-o:before {
+  content: "";
+}
+
+/* line 11, ../scss/fa-scss/_icons.scss */
+.fa-user:before {
+  content: "";
+}
+
+/* line 12, ../scss/fa-scss/_icons.scss */
+.fa-film:before {
+  content: "";
+}
+
+/* line 13, ../scss/fa-scss/_icons.scss */
+.fa-th-large:before {
+  content: "";
+}
+
+/* line 14, ../scss/fa-scss/_icons.scss */
+.fa-th:before {
+  content: "";
+}
+
+/* line 15, ../scss/fa-scss/_icons.scss */
+.fa-th-list:before {
+  content: "";
+}
+
+/* line 16, ../scss/fa-scss/_icons.scss */
+.fa-check:before {
+  content: "";
+}
+
+/* line 17, ../scss/fa-scss/_icons.scss */
+.fa-remove:before,
+.fa-close:before,
+.fa-times:before {
+  content: "";
+}
+
+/* line 20, ../scss/fa-scss/_icons.scss */
+.fa-search-plus:before {
+  content: "";
+}
+
+/* line 21, ../scss/fa-scss/_icons.scss */
+.fa-search-minus:before {
+  content: "";
+}
+
+/* line 22, ../scss/fa-scss/_icons.scss */
+.fa-power-off:before {
+  content: "";
+}
+
+/* line 23, ../scss/fa-scss/_icons.scss */
+.fa-signal:before {
+  content: "";
+}
+
+/* line 24, ../scss/fa-scss/_icons.scss */
+.fa-gear:before,
+.fa-cog:before {
+  content: "";
+}
+
+/* line 26, ../scss/fa-scss/_icons.scss */
+.fa-trash-o:before {
+  content: "";
+}
+
+/* line 27, ../scss/fa-scss/_icons.scss */
+.fa-home:before {
+  content: "";
+}
+
+/* line 28, ../scss/fa-scss/_icons.scss */
+.fa-file-o:before {
+  content: "";
+}
+
+/* line 29, ../scss/fa-scss/_icons.scss */
+.fa-clock-o:before {
+  content: "";
+}
+
+/* line 30, ../scss/fa-scss/_icons.scss */
+.fa-road:before {
+  content: "";
+}
+
+/* line 31, ../scss/fa-scss/_icons.scss */
+.fa-download:before {
+  content: "";
+}
+
+/* line 32, ../scss/fa-scss/_icons.scss */
+.fa-arrow-circle-o-down:before {
+  content: "";
+}
+
+/* line 33, ../scss/fa-scss/_icons.scss */
+.fa-arrow-circle-o-up:before {
+  content: "";
+}
+
+/* line 34, ../scss/fa-scss/_icons.scss */
+.fa-inbox:before {
+  content: "";
+}
+
+/* line 35, ../scss/fa-scss/_icons.scss */
+.fa-play-circle-o:before {
+  content: "";
+}
+
+/* line 36, ../scss/fa-scss/_icons.scss */
+.fa-rotate-right:before,
+.fa-repeat:before {
+  content: "";
+}
+
+/* line 38, ../scss/fa-scss/_icons.scss */
+.fa-refresh:before {
+  content: "";
+}
+
+/* line 39, ../scss/fa-scss/_icons.scss */
+.fa-list-alt:before {
+  content: "";
+}
+
+/* line 40, ../scss/fa-scss/_icons.scss */
+.fa-lock:before {
+  content: "";
+}
+
+/* line 41, ../scss/fa-scss/_icons.scss */
+.fa-flag:before {
+  content: "";
+}
+
+/* line 42, ../scss/fa-scss/_icons.scss */
+.fa-headphones:before {
+  content: "";
+}
+
+/* line 43, ../scss/fa-scss/_icons.scss */
+.fa-volume-off:before {
+  content: "";
+}
+
+/* line 44, ../scss/fa-scss/_icons.scss */
+.fa-volume-down:before {
+  content: "";
+}
+
+/* line 45, ../scss/fa-scss/_icons.scss */
+.fa-volume-up:before {
+  content: "";
+}
+
+/* line 46, ../scss/fa-scss/_icons.scss */
+.fa-qrcode:before {
+  content: "";
+}
+
+/* line 47, ../scss/fa-scss/_icons.scss */
+.fa-barcode:before {
+  content: "";
+}
+
+/* line 48, ../scss/fa-scss/_icons.scss */
+.fa-tag:before {
+  content: "";
+}
+
+/* line 49, ../scss/fa-scss/_icons.scss */
+.fa-tags:before {
+  content: "";
+}
+
+/* line 50, ../scss/fa-scss/_icons.scss */
+.fa-book:before {
+  content: "";
+}
+
+/* line 51, ../scss/fa-scss/_icons.scss */
+.fa-bookmark:before {
+  content: "";
+}
+
+/* line 52, ../scss/fa-scss/_icons.scss */
+.fa-print:before {
+  content: "";
+}
+
+/* line 53, ../scss/fa-scss/_icons.scss */
+.fa-camera:before {
+  content: "";
+}
+
+/* line 54, ../scss/fa-scss/_icons.scss */
+.fa-font:before {
+  content: "";
+}
+
+/* line 55, ../scss/fa-scss/_icons.scss */
+.fa-bold:before {
+  content: "";
+}
+
+/* line 56, ../scss/fa-scss/_icons.scss */
+.fa-italic:before {
+  content: "";
+}
+
+/* line 57, ../scss/fa-scss/_icons.scss */
+.fa-text-height:before {
+  content: "";
+}
+
+/* line 58, ../scss/fa-scss/_icons.scss */
+.fa-text-width:before {
+  content: "";
+}
+
+/* line 59, ../scss/fa-scss/_icons.scss */
+.fa-align-left:before {
+  content: "";
+}
+
+/* line 60, ../scss/fa-scss/_icons.scss */
+.fa-align-center:before {
+  content: "";
+}
+
+/* line 61, ../scss/fa-scss/_icons.scss */
+.fa-align-right:before {
+  content: "";
+}
+
+/* line 62, ../scss/fa-scss/_icons.scss */
+.fa-align-justify:before {
+  content: "";
+}
+
+/* line 63, ../scss/fa-scss/_icons.scss */
+.fa-list:before {
+  content: "";
+}
+
+/* line 64, ../scss/fa-scss/_icons.scss */
+.fa-dedent:before,
+.fa-outdent:before {
+  content: "";
+}
+
+/* line 66, ../scss/fa-scss/_icons.scss */
+.fa-indent:before {
+  content: "";
+}
+
+/* line 67, ../scss/fa-scss/_icons.scss */
+.fa-video-camera:before {
+  content: "";
+}
+
+/* line 68, ../scss/fa-scss/_icons.scss */
+.fa-photo:before,
+.fa-image:before,
+.fa-picture-o:before {
+  content: "";
+}
+
+/* line 71, ../scss/fa-scss/_icons.scss */
+.fa-pencil:before {
+  content: "";
+}
+
+/* line 72, ../scss/fa-scss/_icons.scss */
+.fa-map-marker:before {
+  content: "";
+}
+
+/* line 73, ../scss/fa-scss/_icons.scss */
+.fa-adjust:before {
+  content: "";
+}
+
+/* line 74, ../scss/fa-scss/_icons.scss */
+.fa-tint:before {
+  content: "";
+}
+
+/* line 75, ../scss/fa-scss/_icons.scss */
+.fa-edit:before,
+.fa-pencil-square-o:before {
+  content: "";
+}
+
+/* line 77, ../scss/fa-scss/_icons.scss */
+.fa-share-square-o:before {
+  content: "";
+}
+
+/* line 78, ../scss/fa-scss/_icons.scss */
+.fa-check-square-o:before {
+  content: "";
+}
+
+/* line 79, ../scss/fa-scss/_icons.scss */
+.fa-arrows:before {
+  content: "";
+}
+
+/* line 80, ../scss/fa-scss/_icons.scss */
+.fa-step-backward:before {
+  content: "";
+}
+
+/* line 81, ../scss/fa-scss/_icons.scss */
+.fa-fast-backward:before {
+  content: "";
+}
+
+/* line 82, ../scss/fa-scss/_icons.scss */
+.fa-backward:before {
+  content: "";
+}
+
+/* line 83, ../scss/fa-scss/_icons.scss */
+.fa-play:before {
+  content: "";
+}
+
+/* line 84, ../scss/fa-scss/_icons.scss */
+.fa-pause:before {
+  content: "";
+}
+
+/* line 85, ../scss/fa-scss/_icons.scss */
+.fa-stop:before {
+  content: "";
+}
+
+/* line 86, ../scss/fa-scss/_icons.scss */
+.fa-forward:before {
+  content: "";
+}
+
+/* line 87, ../scss/fa-scss/_icons.scss */
+.fa-fast-forward:before {
+  content: "";
+}
+
+/* line 88, ../scss/fa-scss/_icons.scss */
+.fa-step-forward:before {
+  content: "";
+}
+
+/* line 89, ../scss/fa-scss/_icons.scss */
+.fa-eject:before {
+  content: "";
+}
+
+/* line 90, ../scss/fa-scss/_icons.scss */
+.fa-chevron-left:before {
+  content: "";
+}
+
+/* line 91, ../scss/fa-scss/_icons.scss */
+.fa-chevron-right:before {
+  content: "";
+}
+
+/* line 92, ../scss/fa-scss/_icons.scss */
+.fa-plus-circle:before {
+  content: "";
+}
+
+/* line 93, ../scss/fa-scss/_icons.scss */
+.fa-minus-circle:before {
+  content: "";
+}
+
+/* line 94, ../scss/fa-scss/_icons.scss */
+.fa-times-circle:before {
+  content: "";
+}
+
+/* line 95, ../scss/fa-scss/_icons.scss */
+.fa-check-circle:before {
+  content: "";
+}
+
+/* line 96, ../scss/fa-scss/_icons.scss */
+.fa-question-circle:before {
+  content: "";
+}
+
+/* line 97, ../scss/fa-scss/_icons.scss */
+.fa-info-circle:before {
+  content: "";
+}
+
+/* line 98, ../scss/fa-scss/_icons.scss */
+.fa-crosshairs:before {
+  content: "";
+}
+
+/* line 99, ../scss/fa-scss/_icons.scss */
+.fa-times-circle-o:before {
+  content: "";
+}
+
+/* line 100, ../scss/fa-scss/_icons.scss */
+.fa-check-circle-o:before {
+  content: "";
+}
+
+/* line 101, ../scss/fa-scss/_icons.scss */
+.fa-ban:before {
+  content: "";
+}
+
+/* line 102, ../scss/fa-scss/_icons.scss */
+.fa-arrow-left:before {
+  content: "";
+}
+
+/* line 103, ../scss/fa-scss/_icons.scss */
+.fa-arrow-right:before {
+  content: "";
+}
+
+/* line 104, ../scss/fa-scss/_icons.scss */
+.fa-arrow-up:before {
+  content: "";
+}
+
+/* line 105, ../scss/fa-scss/_icons.scss */
+.fa-arrow-down:before {
+  content: "";
+}
+
+/* line 106, ../scss/fa-scss/_icons.scss */
+.fa-mail-forward:before,
+.fa-share:before {
+  content: "";
+}
+
+/* line 108, ../scss/fa-scss/_icons.scss */
+.fa-expand:before {
+  content: "";
+}
+
+/* line 109, ../scss/fa-scss/_icons.scss */
+.fa-compress:before {
+  content: "";
+}
+
+/* line 110, ../scss/fa-scss/_icons.scss */
+.fa-plus:before {
+  content: "";
+}
+
+/* line 111, ../scss/fa-scss/_icons.scss */
+.fa-minus:before {
+  content: "";
+}
+
+/* line 112, ../scss/fa-scss/_icons.scss */
+.fa-asterisk:before {
+  content: "";
+}
+
+/* line 113, ../scss/fa-scss/_icons.scss */
+.fa-exclamation-circle:before {
+  content: "";
+}
+
+/* line 114, ../scss/fa-scss/_icons.scss */
+.fa-gift:before {
+  content: "";
+}
+
+/* line 115, ../scss/fa-scss/_icons.scss */
+.fa-leaf:before {
+  content: "";
+}
+
+/* line 116, ../scss/fa-scss/_icons.scss */
+.fa-fire:before {
+  content: "";
+}
+
+/* line 117, ../scss/fa-scss/_icons.scss */
+.fa-eye:before {
+  content: "";
+}
+
+/* line 118, ../scss/fa-scss/_icons.scss */
+.fa-eye-slash:before {
+  content: "";
+}
+
+/* line 119, ../scss/fa-scss/_icons.scss */
+.fa-warning:before,
+.fa-exclamation-triangle:before {
+  content: "";
+}
+
+/* line 121, ../scss/fa-scss/_icons.scss */
+.fa-plane:before {
+  content: "";
+}
+
+/* line 122, ../scss/fa-scss/_icons.scss */
+.fa-calendar:before {
+  content: "";
+}
+
+/* line 123, ../scss/fa-scss/_icons.scss */
+.fa-random:before {
+  content: "";
+}
+
+/* line 124, ../scss/fa-scss/_icons.scss */
+.fa-comment:before {
+  content: "";
+}
+
+/* line 125, ../scss/fa-scss/_icons.scss */
+.fa-magnet:before {
+  content: "";
+}
+
+/* line 126, ../scss/fa-scss/_icons.scss */
+.fa-chevron-up:before {
+  content: "";
+}
+
+/* line 127, ../scss/fa-scss/_icons.scss */
+.fa-chevron-down:before {
+  content: "";
+}
+
+/* line 128, ../scss/fa-scss/_icons.scss */
+.fa-retweet:before {
+  content: "";
+}
+
+/* line 129, ../scss/fa-scss/_icons.scss */
+.fa-shopping-cart:before {
+  content: "";
+}
+
+/* line 130, ../scss/fa-scss/_icons.scss */
+.fa-folder:before {
+  content: "";
+}
+
+/* line 131, ../scss/fa-scss/_icons.scss */
+.fa-folder-open:before {
+  content: "";
+}
+
+/* line 132, ../scss/fa-scss/_icons.scss */
+.fa-arrows-v:before {
+  content: "";
+}
+
+/* line 133, ../scss/fa-scss/_icons.scss */
+.fa-arrows-h:before {
+  content: "";
+}
+
+/* line 134, ../scss/fa-scss/_icons.scss */
+.fa-bar-chart-o:before,
+.fa-bar-chart:before {
+  content: "";
+}
+
+/* line 136, ../scss/fa-scss/_icons.scss */
+.fa-twitter-square:before {
+  content: "";
+}
+
+/* line 137, ../scss/fa-scss/_icons.scss */
+.fa-facebook-square:before {
+  content: "";
+}
+
+/* line 138, ../scss/fa-scss/_icons.scss */
+.fa-camera-retro:before {
+  content: "";
+}
+
+/* line 139, ../scss/fa-scss/_icons.scss */
+.fa-key:before {
+  content: "";
+}
+
+/* line 140, ../scss/fa-scss/_icons.scss */
+.fa-gears:before,
+.fa-cogs:before {
+  content: "";
+}
+
+/* line 142, ../scss/fa-scss/_icons.scss */
+.fa-comments:before {
+  content: "";
+}
+
+/* line 143, ../scss/fa-scss/_icons.scss */
+.fa-thumbs-o-up:before {
+  content: "";
+}
+
+/* line 144, ../scss/fa-scss/_icons.scss */
+.fa-thumbs-o-down:before {
+  content: "";
+}
+
+/* line 145, ../scss/fa-scss/_icons.scss */
+.fa-star-half:before {
+  content: "";
+}
+
+/* line 146, ../scss/fa-scss/_icons.scss */
+.fa-heart-o:before {
+  content: "";
+}
+
+/* line 147, ../scss/fa-scss/_icons.scss */
+.fa-sign-out:before {
+  content: "";
+}
+
+/* line 148, ../scss/fa-scss/_icons.scss */
+.fa-linkedin-square:before {
+  content: "";
+}
+
+/* line 149, ../scss/fa-scss/_icons.scss */
+.fa-thumb-tack:before {
+  content: "";
+}
+
+/* line 150, ../scss/fa-scss/_icons.scss */
+.fa-external-link:before {
+  content: "";
+}
+
+/* line 151, ../scss/fa-scss/_icons.scss */
+.fa-sign-in:before {
+  content: "";
+}
+
+/* line 152, ../scss/fa-scss/_icons.scss */
+.fa-trophy:before {
+  content: "";
+}
+
+/* line 153, ../scss/fa-scss/_icons.scss */
+.fa-github-square:before {
+  content: "";
+}
+
+/* line 154, ../scss/fa-scss/_icons.scss */
+.fa-upload:before {
+  content: "";
+}
+
+/* line 155, ../scss/fa-scss/_icons.scss */
+.fa-lemon-o:before {
+  content: "";
+}
+
+/* line 156, ../scss/fa-scss/_icons.scss */
+.fa-phone:before {
+  content: "";
+}
+
+/* line 157, ../scss/fa-scss/_icons.scss */
+.fa-square-o:before {
+  content: "";
+}
+
+/* line 158, ../scss/fa-scss/_icons.scss */
+.fa-bookmark-o:before {
+  content: "";
+}
+
+/* line 159, ../scss/fa-scss/_icons.scss */
+.fa-phone-square:before {
+  content: "";
+}
+
+/* line 160, ../scss/fa-scss/_icons.scss */
+.fa-twitter:before {
+  content: "";
+}
+
+/* line 161, ../scss/fa-scss/_icons.scss */
+.fa-facebook-f:before,
+.fa-facebook:before {
+  content: "";
+}
+
+/* line 163, ../scss/fa-scss/_icons.scss */
+.fa-github:before {
+  content: "";
+}
+
+/* line 164, ../scss/fa-scss/_icons.scss */
+.fa-unlock:before {
+  content: "";
+}
+
+/* line 165, ../scss/fa-scss/_icons.scss */
+.fa-credit-card:before {
+  content: "";
+}
+
+/* line 166, ../scss/fa-scss/_icons.scss */
+.fa-feed:before,
+.fa-rss:before {
+  content: "";
+}
+
+/* line 168, ../scss/fa-scss/_icons.scss */
+.fa-hdd-o:before {
+  content: "";
+}
+
+/* line 169, ../scss/fa-scss/_icons.scss */
+.fa-bullhorn:before {
+  content: "";
+}
+
+/* line 170, ../scss/fa-scss/_icons.scss */
+.fa-bell:before {
+  content: "";
+}
+
+/* line 171, ../scss/fa-scss/_icons.scss */
+.fa-certificate:before {
+  content: "";
+}
+
+/* line 172, ../scss/fa-scss/_icons.scss */
+.fa-hand-o-right:before {
+  content: "";
+}
+
+/* line 173, ../scss/fa-scss/_icons.scss */
+.fa-hand-o-left:before {
+  content: "";
+}
+
+/* line 174, ../scss/fa-scss/_icons.scss */
+.fa-hand-o-up:before {
+  content: "";
+}
+
+/* line 175, ../scss/fa-scss/_icons.scss */
+.fa-hand-o-down:before {
+  content: "";
+}
+
+/* line 176, ../scss/fa-scss/_icons.scss */
+.fa-arrow-circle-left:before {
+  content: "";
+}
+
+/* line 177, ../scss/fa-scss/_icons.scss */
+.fa-arrow-circle-right:before {
+  content: "";
+}
+
+/* line 178, ../scss/fa-scss/_icons.scss */
+.fa-arrow-circle-up:before {
+  content: "";
+}
+
+/* line 179, ../scss/fa-scss/_icons.scss */
+.fa-arrow-circle-down:before {
+  content: "";
+}
+
+/* line 180, ../scss/fa-scss/_icons.scss */
+.fa-globe:before {
+  content: "";
+}
+
+/* line 181, ../scss/fa-scss/_icons.scss */
+.fa-wrench:before {
+  content: "";
+}
+
+/* line 182, ../scss/fa-scss/_icons.scss */
+.fa-tasks:before {
+  content: "";
+}
+
+/* line 183, ../scss/fa-scss/_icons.scss */
+.fa-filter:before {
+  content: "";
+}
+
+/* line 184, ../scss/fa-scss/_icons.scss */
+.fa-briefcase:before {
+  content: "";
+}
+
+/* line 185, ../scss/fa-scss/_icons.scss */
+.fa-arrows-alt:before {
+  content: "";
+}
+
+/* line 186, ../scss/fa-scss/_icons.scss */
+.fa-group:before,
+.fa-users:before {
+  content: "";
+}
+
+/* line 188, ../scss/fa-scss/_icons.scss */
+.fa-chain:before,
+.fa-link:before {
+  content: "";
+}
+
+/* line 190, ../scss/fa-scss/_icons.scss */
+.fa-cloud:before {
+  content: "";
+}
+
+/* line 191, ../scss/fa-scss/_icons.scss */
+.fa-flask:before {
+  content: "";
+}
+
+/* line 192, ../scss/fa-scss/_icons.scss */
+.fa-cut:before,
+.fa-scissors:before {
+  content: "";
+}
+
+/* line 194, ../scss/fa-scss/_icons.scss */
+.fa-copy:before,
+.fa-files-o:before {
+  content: "";
+}
+
+/* line 196, ../scss/fa-scss/_icons.scss */
+.fa-paperclip:before {
+  content: "";
+}
+
+/* line 197, ../scss/fa-scss/_icons.scss */
+.fa-save:before,
+.fa-floppy-o:before {
+  content: "";
+}
+
+/* line 199, ../scss/fa-scss/_icons.scss */
+.fa-square:before {
+  content: "";
+}
+
+/* line 200, ../scss/fa-scss/_icons.scss */
+.fa-navicon:before,
+.fa-reorder:before,
+.fa-bars:before {
+  content: "";
+}
+
+/* line 203, ../scss/fa-scss/_icons.scss */
+.fa-list-ul:before {
+  content: "";
+}
+
+/* line 204, ../scss/fa-scss/_icons.scss */
+.fa-list-ol:before {
+  content: "";
+}
+
+/* line 205, ../scss/fa-scss/_icons.scss */
+.fa-strikethrough:before {
+  content: "";
+}
+
+/* line 206, ../scss/fa-scss/_icons.scss */
+.fa-underline:before {
+  content: "";
+}
+
+/* line 207, ../scss/fa-scss/_icons.scss */
+.fa-table:before {
+  content: "";
+}
+
+/* line 208, ../scss/fa-scss/_icons.scss */
+.fa-magic:before {
+  content: "";
+}
+
+/* line 209, ../scss/fa-scss/_icons.scss */
+.fa-truck:before {
+  content: "";
+}
+
+/* line 210, ../scss/fa-scss/_icons.scss */
+.fa-pinterest:before {
+  content: "";
+}
+
+/* line 211, ../scss/fa-scss/_icons.scss */
+.fa-pinterest-square:before {
+  content: "";
+}
+
+/* line 212, ../scss/fa-scss/_icons.scss */
+.fa-google-plus-square:before {
+  content: "";
+}
+
+/* line 213, ../scss/fa-scss/_icons.scss */
+.fa-google-plus:before {
+  content: "";
+}
+
+/* line 214, ../scss/fa-scss/_icons.scss */
+.fa-money:before {
+  content: "";
+}
+
+/* line 215, ../scss/fa-scss/_icons.scss */
+.fa-caret-down:before {
+  content: "";
+}
+
+/* line 216, ../scss/fa-scss/_icons.scss */
+.fa-caret-up:before {
+  content: "";
+}
+
+/* line 217, ../scss/fa-scss/_icons.scss */
+.fa-caret-left:before {
+  content: "";
+}
+
+/* line 218, ../scss/fa-scss/_icons.scss */
+.fa-caret-right:before {
+  content: "";
+}
+
+/* line 219, ../scss/fa-scss/_icons.scss */
+.fa-columns:before {
+  content: "";
+}
+
+/* line 220, ../scss/fa-scss/_icons.scss */
+.fa-unsorted:before,
+.fa-sort:before {
+  content: "";
+}
+
+/* line 222, ../scss/fa-scss/_icons.scss */
+.fa-sort-down:before,
+.fa-sort-desc:before {
+  content: "";
+}
+
+/* line 224, ../scss/fa-scss/_icons.scss */
+.fa-sort-up:before,
+.fa-sort-asc:before {
+  content: "";
+}
+
+/* line 226, ../scss/fa-scss/_icons.scss */
+.fa-envelope:before {
+  content: "";
+}
+
+/* line 227, ../scss/fa-scss/_icons.scss */
+.fa-linkedin:before {
+  content: "";
+}
+
+/* line 228, ../scss/fa-scss/_icons.scss */
+.fa-rotate-left:before,
+.fa-undo:before {
+  content: "";
+}
+
+/* line 230, ../scss/fa-scss/_icons.scss */
+.fa-legal:before,
+.fa-gavel:before {
+  content: "";
+}
+
+/* line 232, ../scss/fa-scss/_icons.scss */
+.fa-dashboard:before,
+.fa-tachometer:before {
+  content: "";
+}
+
+/* line 234, ../scss/fa-scss/_icons.scss */
+.fa-comment-o:before {
+  content: "";
+}
+
+/* line 235, ../scss/fa-scss/_icons.scss */
+.fa-comments-o:before {
+  content: "";
+}
+
+/* line 236, ../scss/fa-scss/_icons.scss */
+.fa-flash:before,
+.fa-bolt:before {
+  content: "";
+}
+
+/* line 238, ../scss/fa-scss/_icons.scss */
+.fa-sitemap:before {
+  content: "";
+}
+
+/* line 239, ../scss/fa-scss/_icons.scss */
+.fa-umbrella:before {
+  content: "";
+}
+
+/* line 240, ../scss/fa-scss/_icons.scss */
+.fa-paste:before,
+.fa-clipboard:before {
+  content: "";
+}
+
+/* line 242, ../scss/fa-scss/_icons.scss */
+.fa-lightbulb-o:before {
+  content: "";
+}
+
+/* line 243, ../scss/fa-scss/_icons.scss */
+.fa-exchange:before {
+  content: "";
+}
+
+/* line 244, ../scss/fa-scss/_icons.scss */
+.fa-cloud-download:before {
+  content: "";
+}
+
+/* line 245, ../scss/fa-scss/_icons.scss */
+.fa-cloud-upload:before {
+  content: "";
+}
+
+/* line 246, ../scss/fa-scss/_icons.scss */
+.fa-user-md:before {
+  content: "";
+}
+
+/* line 247, ../scss/fa-scss/_icons.scss */
+.fa-stethoscope:before {
+  content: "";
+}
+
+/* line 248, ../scss/fa-scss/_icons.scss */
+.fa-suitcase:before {
+  content: "";
+}
+
+/* line 249, ../scss/fa-scss/_icons.scss */
+.fa-bell-o:before {
+  content: "";
+}
+
+/* line 250, ../scss/fa-scss/_icons.scss */
+.fa-coffee:before {
+  content: "";
+}
+
+/* line 251, ../scss/fa-scss/_icons.scss */
+.fa-cutlery:before {
+  content: "";
+}
+
+/* line 252, ../scss/fa-scss/_icons.scss */
+.fa-file-text-o:before {
+  content: "";
+}
+
+/* line 253, ../scss/fa-scss/_icons.scss */
+.fa-building-o:before {
+  content: "";
+}
+
+/* line 254, ../scss/fa-scss/_icons.scss */
+.fa-hospital-o:before {
+  content: "";
+}
+
+/* line 255, ../scss/fa-scss/_icons.scss */
+.fa-ambulance:before {
+  content: "";
+}
+
+/* line 256, ../scss/fa-scss/_icons.scss */
+.fa-medkit:before {
+  content: "";
+}
+
+/* line 257, ../scss/fa-scss/_icons.scss */
+.fa-fighter-jet:before {
+  content: "";
+}
+
+/* line 258, ../scss/fa-scss/_icons.scss */
+.fa-beer:before {
+  content: "";
+}
+
+/* line 259, ../scss/fa-scss/_icons.scss */
+.fa-h-square:before {
+  content: "";
+}
+
+/* line 260, ../scss/fa-scss/_icons.scss */
+.fa-plus-square:before {
+  content: "";
+}
+
+/* line 261, ../scss/fa-scss/_icons.scss */
+.fa-angle-double-left:before {
+  content: "";
+}
+
+/* line 262, ../scss/fa-scss/_icons.scss */
+.fa-angle-double-right:before {
+  content: "";
+}
+
+/* line 263, ../scss/fa-scss/_icons.scss */
+.fa-angle-double-up:before {
+  content: "";
+}
+
+/* line 264, ../scss/fa-scss/_icons.scss */
+.fa-angle-double-down:before {
+  content: "";
+}
+
+/* line 265, ../scss/fa-scss/_icons.scss */
+.fa-angle-left:before {
+  content: "";
+}
+
+/* line 266, ../scss/fa-scss/_icons.scss */
+.fa-angle-right:before {
+  content: "";
+}
+
+/* line 267, ../scss/fa-scss/_icons.scss */
+.fa-angle-up:before {
+  content: "";
+}
+
+/* line 268, ../scss/fa-scss/_icons.scss */
+.fa-angle-down:before {
+  content: "";
+}
+
+/* line 269, ../scss/fa-scss/_icons.scss */
+.fa-desktop:before {
+  content: "";
+}
+
+/* line 270, ../scss/fa-scss/_icons.scss */
+.fa-laptop:before {
+  content: "";
+}
+
+/* line 271, ../scss/fa-scss/_icons.scss */
+.fa-tablet:before {
+  content: "";
+}
+
+/* line 272, ../scss/fa-scss/_icons.scss */
+.fa-mobile-phone:before,
+.fa-mobile:before {
+  content: "";
+}
+
+/* line 274, ../scss/fa-scss/_icons.scss */
+.fa-circle-o:before {
+  content: "";
+}
+
+/* line 275, ../scss/fa-scss/_icons.scss */
+.fa-quote-left:before {
+  content: "";
+}
+
+/* line 276, ../scss/fa-scss/_icons.scss */
+.fa-quote-right:before {
+  content: "";
+}
+
+/* line 277, ../scss/fa-scss/_icons.scss */
+.fa-spinner:before {
+  content: "";
+}
+
+/* line 278, ../scss/fa-scss/_icons.scss */
+.fa-circle:before {
+  content: "";
+}
+
+/* line 279, ../scss/fa-scss/_icons.scss */
+.fa-mail-reply:before,
+.fa-reply:before {
+  content: "";
+}
+
+/* line 281, ../scss/fa-scss/_icons.scss */
+.fa-github-alt:before {
+  content: "";
+}
+
+/* line 282, ../scss/fa-scss/_icons.scss */
+.fa-folder-o:before {
+  content: "";
+}
+
+/* line 283, ../scss/fa-scss/_icons.scss */
+.fa-folder-open-o:before {
+  content: "";
+}
+
+/* line 284, ../scss/fa-scss/_icons.scss */
+.fa-smile-o:before {
+  content: "";
+}
+
+/* line 285, ../scss/fa-scss/_icons.scss */
+.fa-frown-o:before {
+  content: "";
+}
+
+/* line 286, ../scss/fa-scss/_icons.scss */
+.fa-meh-o:before {
+  content: "";
+}
+
+/* line 287, ../scss/fa-scss/_icons.scss */
+.fa-gamepad:before {
+  content: "";
+}
+
+/* line 288, ../scss/fa-scss/_icons.scss */
+.fa-keyboard-o:before {
+  content: "";
+}
+
+/* line 289, ../scss/fa-scss/_icons.scss */
+.fa-flag-o:before {
+  content: "";
+}
+
+/* line 290, ../scss/fa-scss/_icons.scss */
+.fa-flag-checkered:before {
+  content: "";
+}
+
+/* line 291, ../scss/fa-scss/_icons.scss */
+.fa-terminal:before {
+  content: "";
+}
+
+/* line 292, ../scss/fa-scss/_icons.scss */
+.fa-code:before {
+  content: "";
+}
+
+/* line 293, ../scss/fa-scss/_icons.scss */
+.fa-mail-reply-all:before,
+.fa-reply-all:before {
+  content: "";
+}
+
+/* line 295, ../scss/fa-scss/_icons.scss */
+.fa-star-half-empty:before,
+.fa-star-half-full:before,
+.fa-star-half-o:before {
+  content: "";
+}
+
+/* line 298, ../scss/fa-scss/_icons.scss */
+.fa-location-arrow:before {
+  content: "";
+}
+
+/* line 299, ../scss/fa-scss/_icons.scss */
+.fa-crop:before {
+  content: "";
+}
+
+/* line 300, ../scss/fa-scss/_icons.scss */
+.fa-code-fork:before {
+  content: "";
+}
+
+/* line 301, ../scss/fa-scss/_icons.scss */
+.fa-unlink:before,
+.fa-chain-broken:before {
+  content: "";
+}
+
+/* line 303, ../scss/fa-scss/_icons.scss */
+.fa-question:before {
+  content: "";
+}
+
+/* line 304, ../scss/fa-scss/_icons.scss */
+.fa-info:before {
+  content: "";
+}
+
+/* line 305, ../scss/fa-scss/_icons.scss */
+.fa-exclamation:before {
+  content: "";
+}
+
+/* line 306, ../scss/fa-scss/_icons.scss */
+.fa-superscript:before {
+  content: "";
+}
+
+/* line 307, ../scss/fa-scss/_icons.scss */
+.fa-subscript:before {
+  content: "";
+}
+
+/* line 308, ../scss/fa-scss/_icons.scss */
+.fa-eraser:before {
+  content: "";
+}
+
+/* line 309, ../scss/fa-scss/_icons.scss */
+.fa-puzzle-piece:before {
+  content: "";
+}
+
+/* line 310, ../scss/fa-scss/_icons.scss */
+.fa-microphone:before {
+  content: "";
+}
+
+/* line 311, ../scss/fa-scss/_icons.scss */
+.fa-microphone-slash:before {
+  content: "";
+}
+
+/* line 312, ../scss/fa-scss/_icons.scss */
+.fa-shield:before {
+  content: "";
+}
+
+/* line 313, ../scss/fa-scss/_icons.scss */
+.fa-calendar-o:before {
+  content: "";
+}
+
+/* line 314, ../scss/fa-scss/_icons.scss */
+.fa-fire-extinguisher:before {
+  content: "";
+}
+
+/* line 315, ../scss/fa-scss/_icons.scss */
+.fa-rocket:before {
+  content: "";
+}
+
+/* line 316, ../scss/fa-scss/_icons.scss */
+.fa-maxcdn:before {
+  content: "";
+}
+
+/* line 317, ../scss/fa-scss/_icons.scss */
+.fa-chevron-circle-left:before {
+  content: "";
+}
+
+/* line 318, ../scss/fa-scss/_icons.scss */
+.fa-chevron-circle-right:before {
+  content: "";
+}
+
+/* line 319, ../scss/fa-scss/_icons.scss */
+.fa-chevron-circle-up:before {
+  content: "";
+}
+
+/* line 320, ../scss/fa-scss/_icons.scss */
+.fa-chevron-circle-down:before {
+  content: "";
+}
+
+/* line 321, ../scss/fa-scss/_icons.scss */
+.fa-html5:before {
+  content: "";
+}
+
+/* line 322, ../scss/fa-scss/_icons.scss */
+.fa-css3:before {
+  content: "";
+}
+
+/* line 323, ../scss/fa-scss/_icons.scss */
+.fa-anchor:before {
+  content: "";
+}
+
+/* line 324, ../scss/fa-scss/_icons.scss */
+.fa-unlock-alt:before {
+  content: "";
+}
+
+/* line 325, ../scss/fa-scss/_icons.scss */
+.fa-bullseye:before {
+  content: "";
+}
+
+/* line 326, ../scss/fa-scss/_icons.scss */
+.fa-ellipsis-h:before {
+  content: "";
+}
+
+/* line 327, ../scss/fa-scss/_icons.scss */
+.fa-ellipsis-v:before {
+  content: "";
+}
+
+/* line 328, ../scss/fa-scss/_icons.scss */
+.fa-rss-square:before {
+  content: "";
+}
+
+/* line 329, ../scss/fa-scss/_icons.scss */
+.fa-play-circle:before {
+  content: "";
+}
+
+/* line 330, ../scss/fa-scss/_icons.scss */
+.fa-ticket:before {
+  content: "";
+}
+
+/* line 331, ../scss/fa-scss/_icons.scss */
+.fa-minus-square:before {
+  content: "";
+}
+
+/* line 332, ../scss/fa-scss/_icons.scss */
+.fa-minus-square-o:before {
+  content: "";
+}
+
+/* line 333, ../scss/fa-scss/_icons.scss */
+.fa-level-up:before {
+  content: "";
+}
+
+/* line 334, ../scss/fa-scss/_icons.scss */
+.fa-level-down:before {
+  content: "";
+}
+
+/* line 335, ../scss/fa-scss/_icons.scss */
+.fa-check-square:before {
+  content: "";
+}
+
+/* line 336, ../scss/fa-scss/_icons.scss */
+.fa-pencil-square:before {
+  content: "";
+}
+
+/* line 337, ../scss/fa-scss/_icons.scss */
+.fa-external-link-square:before {
+  content: "";
+}
+
+/* line 338, ../scss/fa-scss/_icons.scss */
+.fa-share-square:before {
+  content: "";
+}
+
+/* line 339, ../scss/fa-scss/_icons.scss */
+.fa-compass:before {
+  content: "";
+}
+
+/* line 340, ../scss/fa-scss/_icons.scss */
+.fa-toggle-down:before,
+.fa-caret-square-o-down:before {
+  content: "";
+}
+
+/* line 342, ../scss/fa-scss/_icons.scss */
+.fa-toggle-up:before,
+.fa-caret-square-o-up:before {
+  content: "";
+}
+
+/* line 344, ../scss/fa-scss/_icons.scss */
+.fa-toggle-right:before,
+.fa-caret-square-o-right:before {
+  content: "";
+}
+
+/* line 346, ../scss/fa-scss/_icons.scss */
+.fa-euro:before,
+.fa-eur:before {
+  content: "";
+}
+
+/* line 348, ../scss/fa-scss/_icons.scss */
+.fa-gbp:before {
+  content: "";
+}
+
+/* line 349, ../scss/fa-scss/_icons.scss */
+.fa-dollar:before,
+.fa-usd:before {
+  content: "";
+}
+
+/* line 351, ../scss/fa-scss/_icons.scss */
+.fa-rupee:before,
+.fa-inr:before {
+  content: "";
+}
+
+/* line 353, ../scss/fa-scss/_icons.scss */
+.fa-cny:before,
+.fa-rmb:before,
+.fa-yen:before,
+.fa-jpy:before {
+  content: "";
+}
+
+/* line 357, ../scss/fa-scss/_icons.scss */
+.fa-ruble:before,
+.fa-rouble:before,
+.fa-rub:before {
+  content: "";
+}
+
+/* line 360, ../scss/fa-scss/_icons.scss */
+.fa-won:before,
+.fa-krw:before {
+  content: "";
+}
+
+/* line 362, ../scss/fa-scss/_icons.scss */
+.fa-bitcoin:before,
+.fa-btc:before {
+  content: "";
+}
+
+/* line 364, ../scss/fa-scss/_icons.scss */
+.fa-file:before {
+  content: "";
+}
+
+/* line 365, ../scss/fa-scss/_icons.scss */
+.fa-file-text:before {
+  content: "";
+}
+
+/* line 366, ../scss/fa-scss/_icons.scss */
+.fa-sort-alpha-asc:before {
+  content: "";
+}
+
+/* line 367, ../scss/fa-scss/_icons.scss */
+.fa-sort-alpha-desc:before {
+  content: "";
+}
+
+/* line 368, ../scss/fa-scss/_icons.scss */
+.fa-sort-amount-asc:before {
+  content: "";
+}
+
+/* line 369, ../scss/fa-scss/_icons.scss */
+.fa-sort-amount-desc:before {
+  content: "";
+}
+
+/* line 370, ../scss/fa-scss/_icons.scss */
+.fa-sort-numeric-asc:before {
+  content: "";
+}
+
+/* line 371, ../scss/fa-scss/_icons.scss */
+.fa-sort-numeric-desc:before {
+  content: "";
+}
+
+/* line 372, ../scss/fa-scss/_icons.scss */
+.fa-thumbs-up:before {
+  content: "";
+}
+
+/* line 373, ../scss/fa-scss/_icons.scss */
+.fa-thumbs-down:before {
+  content: "";
+}
+
+/* line 374, ../scss/fa-scss/_icons.scss */
+.fa-youtube-square:before {
+  content: "";
+}
+
+/* line 375, ../scss/fa-scss/_icons.scss */
+.fa-youtube:before {
+  content: "";
+}
+
+/* line 376, ../scss/fa-scss/_icons.scss */
+.fa-xing:before {
+  content: "";
+}
+
+/* line 377, ../scss/fa-scss/_icons.scss */
+.fa-xing-square:before {
+  content: "";
+}
+
+/* line 378, ../scss/fa-scss/_icons.scss */
+.fa-youtube-play:before {
+  content: "";
+}
+
+/* line 379, ../scss/fa-scss/_icons.scss */
+.fa-dropbox:before {
+  content: "";
+}
+
+/* line 380, ../scss/fa-scss/_icons.scss */
+.fa-stack-overflow:before {
+  content: "";
+}
+
+/* line 381, ../scss/fa-scss/_icons.scss */
+.fa-instagram:before {
+  content: "";
+}
+
+/* line 382, ../scss/fa-scss/_icons.scss */
+.fa-flickr:before {
+  content: "";
+}
+
+/* line 383, ../scss/fa-scss/_icons.scss */
+.fa-adn:before {
+  content: "";
+}
+
+/* line 384, ../scss/fa-scss/_icons.scss */
+.fa-bitbucket:before {
+  content: "";
+}
+
+/* line 385, ../scss/fa-scss/_icons.scss */
+.fa-bitbucket-square:before {
+  content: "";
+}
+
+/* line 386, ../scss/fa-scss/_icons.scss */
+.fa-tumblr:before {
+  content: "";
+}
+
+/* line 387, ../scss/fa-scss/_icons.scss */
+.fa-tumblr-square:before {
+  content: "";
+}
+
+/* line 388, ../scss/fa-scss/_icons.scss */
+.fa-long-arrow-down:before {
+  content: "";
+}
+
+/* line 389, ../scss/fa-scss/_icons.scss */
+.fa-long-arrow-up:before {
+  content: "";
+}
+
+/* line 390, ../scss/fa-scss/_icons.scss */
+.fa-long-arrow-left:before {
+  content: "";
+}
+
+/* line 391, ../scss/fa-scss/_icons.scss */
+.fa-long-arrow-right:before {
+  content: "";
+}
+
+/* line 392, ../scss/fa-scss/_icons.scss */
+.fa-apple:before {
+  content: "";
+}
+
+/* line 393, ../scss/fa-scss/_icons.scss */
+.fa-windows:before {
+  content: "";
+}
+
+/* line 394, ../scss/fa-scss/_icons.scss */
+.fa-android:before {
+  content: "";
+}
+
+/* line 395, ../scss/fa-scss/_icons.scss */
+.fa-linux:before {
+  content: "";
+}
+
+/* line 396, ../scss/fa-scss/_icons.scss */
+.fa-dribbble:before {
+  content: "";
+}
+
+/* line 397, ../scss/fa-scss/_icons.scss */
+.fa-skype:before {
+  content: "";
+}
+
+/* line 398, ../scss/fa-scss/_icons.scss */
+.fa-foursquare:before {
+  content: "";
+}
+
+/* line 399, ../scss/fa-scss/_icons.scss */
+.fa-trello:before {
+  content: "";
+}
+
+/* line 400, ../scss/fa-scss/_icons.scss */
+.fa-female:before {
+  content: "";
+}
+
+/* line 401, ../scss/fa-scss/_icons.scss */
+.fa-male:before {
+  content: "";
+}
+
+/* line 402, ../scss/fa-scss/_icons.scss */
+.fa-gittip:before,
+.fa-gratipay:before {
+  content: "";
+}
+
+/* line 404, ../scss/fa-scss/_icons.scss */
+.fa-sun-o:before {
+  content: "";
+}
+
+/* line 405, ../scss/fa-scss/_icons.scss */
+.fa-moon-o:before {
+  content: "";
+}
+
+/* line 406, ../scss/fa-scss/_icons.scss */
+.fa-archive:before {
+  content: "";
+}
+
+/* line 407, ../scss/fa-scss/_icons.scss */
+.fa-bug:before {
+  content: "";
+}
+
+/* line 408, ../scss/fa-scss/_icons.scss */
+.fa-vk:before {
+  content: "";
+}
+
+/* line 409, ../scss/fa-scss/_icons.scss */
+.fa-weibo:before {
+  content: "";
+}
+
+/* line 410, ../scss/fa-scss/_icons.scss */
+.fa-renren:before {
+  content: "";
+}
+
+/* line 411, ../scss/fa-scss/_icons.scss */
+.fa-pagelines:before {
+  content: "";
+}
+
+/* line 412, ../scss/fa-scss/_icons.scss */
+.fa-stack-exchange:before {
+  content: "";
+}
+
+/* line 413, ../scss/fa-scss/_icons.scss */
+.fa-arrow-circle-o-right:before {
+  content: "";
+}
+
+/* line 414, ../scss/fa-scss/_icons.scss */
+.fa-arrow-circle-o-left:before {
+  content: "";
+}
+
+/* line 415, ../scss/fa-scss/_icons.scss */
+.fa-toggle-left:before,
+.fa-caret-square-o-left:before {
+  content: "";
+}
+
+/* line 417, ../scss/fa-scss/_icons.scss */
+.fa-dot-circle-o:before {
+  content: "";
+}
+
+/* line 418, ../scss/fa-scss/_icons.scss */
+.fa-wheelchair:before {
+  content: "";
+}
+
+/* line 419, ../scss/fa-scss/_icons.scss */
+.fa-vimeo-square:before {
+  content: "";
+}
+
+/* line 420, ../scss/fa-scss/_icons.scss */
+.fa-turkish-lira:before,
+.fa-try:before {
+  content: "";
+}
+
+/* line 422, ../scss/fa-scss/_icons.scss */
+.fa-plus-square-o:before {
+  content: "";
+}
+
+/* line 423, ../scss/fa-scss/_icons.scss */
+.fa-space-shuttle:before {
+  content: "";
+}
+
+/* line 424, ../scss/fa-scss/_icons.scss */
+.fa-slack:before {
+  content: "";
+}
+
+/* line 425, ../scss/fa-scss/_icons.scss */
+.fa-envelope-square:before {
+  content: "";
+}
+
+/* line 426, ../scss/fa-scss/_icons.scss */
+.fa-wordpress:before {
+  content: "";
+}
+
+/* line 427, ../scss/fa-scss/_icons.scss */
+.fa-openid:before {
+  content: "";
+}
+
+/* line 428, ../scss/fa-scss/_icons.scss */
+.fa-institution:before,
+.fa-bank:before,
+.fa-university:before {
+  content: "";
+}
+
+/* line 431, ../scss/fa-scss/_icons.scss */
+.fa-mortar-board:before,
+.fa-graduation-cap:before {
+  content: "";
+}
+
+/* line 433, ../scss/fa-scss/_icons.scss */
+.fa-yahoo:before {
+  content: "";
+}
+
+/* line 434, ../scss/fa-scss/_icons.scss */
+.fa-google:before {
+  content: "";
+}
+
+/* line 435, ../scss/fa-scss/_icons.scss */
+.fa-reddit:before {
+  content: "";
+}
+
+/* line 436, ../scss/fa-scss/_icons.scss */
+.fa-reddit-square:before {
+  content: "";
+}
+
+/* line 437, ../scss/fa-scss/_icons.scss */
+.fa-stumbleupon-circle:before {
+  content: "";
+}
+
+/* line 438, ../scss/fa-scss/_icons.scss */
+.fa-stumbleupon:before {
+  content: "";
+}
+
+/* line 439, ../scss/fa-scss/_icons.scss */
+.fa-delicious:before {
+  content: "";
+}
+
+/* line 440, ../scss/fa-scss/_icons.scss */
+.fa-digg:before {
+  content: "";
+}
+
+/* line 441, ../scss/fa-scss/_icons.scss */
+.fa-pied-piper-pp:before {
+  content: "";
+}
+
+/* line 442, ../scss/fa-scss/_icons.scss */
+.fa-pied-piper-alt:before {
+  content: "";
+}
+
+/* line 443, ../scss/fa-scss/_icons.scss */
+.fa-drupal:before {
+  content: "";
+}
+
+/* line 444, ../scss/fa-scss/_icons.scss */
+.fa-joomla:before {
+  content: "";
+}
+
+/* line 445, ../scss/fa-scss/_icons.scss */
+.fa-language:before {
+  content: "";
+}
+
+/* line 446, ../scss/fa-scss/_icons.scss */
+.fa-fax:before {
+  content: "";
+}
+
+/* line 447, ../scss/fa-scss/_icons.scss */
+.fa-building:before {
+  content: "";
+}
+
+/* line 448, ../scss/fa-scss/_icons.scss */
+.fa-child:before {
+  content: "";
+}
+
+/* line 449, ../scss/fa-scss/_icons.scss */
+.fa-paw:before {
+  content: "";
+}
+
+/* line 450, ../scss/fa-scss/_icons.scss */
+.fa-spoon:before {
+  content: "";
+}
+
+/* line 451, ../scss/fa-scss/_icons.scss */
+.fa-cube:before {
+  content: "";
+}
+
+/* line 452, ../scss/fa-scss/_icons.scss */
+.fa-cubes:before {
+  content: "";
+}
+
+/* line 453, ../scss/fa-scss/_icons.scss */
+.fa-behance:before {
+  content: "";
+}
+
+/* line 454, ../scss/fa-scss/_icons.scss */
+.fa-behance-square:before {
+  content: "";
+}
+
+/* line 455, ../scss/fa-scss/_icons.scss */
+.fa-steam:before {
+  content: "";
+}
+
+/* line 456, ../scss/fa-scss/_icons.scss */
+.fa-steam-square:before {
+  content: "";
+}
+
+/* line 457, ../scss/fa-scss/_icons.scss */
+.fa-recycle:before {
+  content: "";
+}
+
+/* line 458, ../scss/fa-scss/_icons.scss */
+.fa-automobile:before,
+.fa-car:before {
+  content: "";
+}
+
+/* line 460, ../scss/fa-scss/_icons.scss */
+.fa-cab:before,
+.fa-taxi:before {
+  content: "";
+}
+
+/* line 462, ../scss/fa-scss/_icons.scss */
+.fa-tree:before {
+  content: "";
+}
+
+/* line 463, ../scss/fa-scss/_icons.scss */
+.fa-spotify:before {
+  content: "";
+}
+
+/* line 464, ../scss/fa-scss/_icons.scss */
+.fa-deviantart:before {
+  content: "";
+}
+
+/* line 465, ../scss/fa-scss/_icons.scss */
+.fa-soundcloud:before {
+  content: "";
+}
+
+/* line 466, ../scss/fa-scss/_icons.scss */
+.fa-database:before {
+  content: "";
+}
+
+/* line 467, ../scss/fa-scss/_icons.scss */
+.fa-file-pdf-o:before {
+  content: "";
+}
+
+/* line 468, ../scss/fa-scss/_icons.scss */
+.fa-file-word-o:before {
+  content: "";
+}
+
+/* line 469, ../scss/fa-scss/_icons.scss */
+.fa-file-excel-o:before {
+  content: "";
+}
+
+/* line 470, ../scss/fa-scss/_icons.scss */
+.fa-file-powerpoint-o:before {
+  content: "";
+}
+
+/* line 471, ../scss/fa-scss/_icons.scss */
+.fa-file-photo-o:before,
+.fa-file-picture-o:before,
+.fa-file-image-o:before {
+  content: "";
+}
+
+/* line 474, ../scss/fa-scss/_icons.scss */
+.fa-file-zip-o:before,
+.fa-file-archive-o:before {
+  content: "";
+}
+
+/* line 476, ../scss/fa-scss/_icons.scss */
+.fa-file-sound-o:before,
+.fa-file-audio-o:before {
+  content: "";
+}
+
+/* line 478, ../scss/fa-scss/_icons.scss */
+.fa-file-movie-o:before,
+.fa-file-video-o:before {
+  content: "";
+}
+
+/* line 480, ../scss/fa-scss/_icons.scss */
+.fa-file-code-o:before {
+  content: "";
+}
+
+/* line 481, ../scss/fa-scss/_icons.scss */
+.fa-vine:before {
+  content: "";
+}
+
+/* line 482, ../scss/fa-scss/_icons.scss */
+.fa-codepen:before {
+  content: "";
+}
+
+/* line 483, ../scss/fa-scss/_icons.scss */
+.fa-jsfiddle:before {
+  content: "";
+}
+
+/* line 484, ../scss/fa-scss/_icons.scss */
+.fa-life-bouy:before,
+.fa-life-buoy:before,
+.fa-life-saver:before,
+.fa-support:before,
+.fa-life-ring:before {
+  content: "";
+}
+
+/* line 489, ../scss/fa-scss/_icons.scss */
+.fa-circle-o-notch:before {
+  content: "";
+}
+
+/* line 490, ../scss/fa-scss/_icons.scss */
+.fa-ra:before,
+.fa-resistance:before,
+.fa-rebel:before {
+  content: "";
+}
+
+/* line 493, ../scss/fa-scss/_icons.scss */
+.fa-ge:before,
+.fa-empire:before {
+  content: "";
+}
+
+/* line 495, ../scss/fa-scss/_icons.scss */
+.fa-git-square:before {
+  content: "";
+}
+
+/* line 496, ../scss/fa-scss/_icons.scss */
+.fa-git:before {
+  content: "";
+}
+
+/* line 497, ../scss/fa-scss/_icons.scss */
+.fa-y-combinator-square:before,
+.fa-yc-square:before,
+.fa-hacker-news:before {
+  content: "";
+}
+
+/* line 500, ../scss/fa-scss/_icons.scss */
+.fa-tencent-weibo:before {
+  content: "";
+}
+
+/* line 501, ../scss/fa-scss/_icons.scss */
+.fa-qq:before {
+  content: "";
+}
+
+/* line 502, ../scss/fa-scss/_icons.scss */
+.fa-wechat:before,
+.fa-weixin:before {
+  content: "";
+}
+
+/* line 504, ../scss/fa-scss/_icons.scss */
+.fa-send:before,
+.fa-paper-plane:before {
+  content: "";
+}
+
+/* line 506, ../scss/fa-scss/_icons.scss */
+.fa-send-o:before,
+.fa-paper-plane-o:before {
+  content: "";
+}
+
+/* line 508, ../scss/fa-scss/_icons.scss */
+.fa-history:before {
+  content: "";
+}
+
+/* line 509, ../scss/fa-scss/_icons.scss */
+.fa-circle-thin:before {
+  content: "";
+}
+
+/* line 510, ../scss/fa-scss/_icons.scss */
+.fa-header:before {
+  content: "";
+}
+
+/* line 511, ../scss/fa-scss/_icons.scss */
+.fa-paragraph:before {
+  content: "";
+}
+
+/* line 512, ../scss/fa-scss/_icons.scss */
+.fa-sliders:before {
+  content: "";
+}
+
+/* line 513, ../scss/fa-scss/_icons.scss */
+.fa-share-alt:before {
+  content: "";
+}
+
+/* line 514, ../scss/fa-scss/_icons.scss */
+.fa-share-alt-square:before {
+  content: "";
+}
+
+/* line 515, ../scss/fa-scss/_icons.scss */
+.fa-bomb:before {
+  content: "";
+}
+
+/* line 516, ../scss/fa-scss/_icons.scss */
+.fa-soccer-ball-o:before,
+.fa-futbol-o:before {
+  content: "";
+}
+
+/* line 518, ../scss/fa-scss/_icons.scss */
+.fa-tty:before {
+  content: "";
+}
+
+/* line 519, ../scss/fa-scss/_icons.scss */
+.fa-binoculars:before {
+  content: "";
+}
+
+/* line 520, ../scss/fa-scss/_icons.scss */
+.fa-plug:before {
+  content: "";
+}
+
+/* line 521, ../scss/fa-scss/_icons.scss */
+.fa-slideshare:before {
+  content: "";
+}
+
+/* line 522, ../scss/fa-scss/_icons.scss */
+.fa-twitch:before {
+  content: "";
+}
+
+/* line 523, ../scss/fa-scss/_icons.scss */
+.fa-yelp:before {
+  content: "";
+}
+
+/* line 524, ../scss/fa-scss/_icons.scss */
+.fa-newspaper-o:before {
+  content: "";
+}
+
+/* line 525, ../scss/fa-scss/_icons.scss */
+.fa-wifi:before {
+  content: "";
+}
+
+/* line 526, ../scss/fa-scss/_icons.scss */
+.fa-calculator:before {
+  content: "";
+}
+
+/* line 527, ../scss/fa-scss/_icons.scss */
+.fa-paypal:before {
+  content: "";
+}
+
+/* line 528, ../scss/fa-scss/_icons.scss */
+.fa-google-wallet:before {
+  content: "";
+}
+
+/* line 529, ../scss/fa-scss/_icons.scss */
+.fa-cc-visa:before {
+  content: "";
+}
+
+/* line 530, ../scss/fa-scss/_icons.scss */
+.fa-cc-mastercard:before {
+  content: "";
+}
+
+/* line 531, ../scss/fa-scss/_icons.scss */
+.fa-cc-discover:before {
+  content: "";
+}
+
+/* line 532, ../scss/fa-scss/_icons.scss */
+.fa-cc-amex:before {
+  content: "";
+}
+
+/* line 533, ../scss/fa-scss/_icons.scss */
+.fa-cc-paypal:before {
+  content: "";
+}
+
+/* line 534, ../scss/fa-scss/_icons.scss */
+.fa-cc-stripe:before {
+  content: "";
+}
+
+/* line 535, ../scss/fa-scss/_icons.scss */
+.fa-bell-slash:before {
+  content: "";
+}
+
+/* line 536, ../scss/fa-scss/_icons.scss */
+.fa-bell-slash-o:before {
+  content: "";
+}
+
+/* line 537, ../scss/fa-scss/_icons.scss */
+.fa-trash:before {
+  content: "";
+}
+
+/* line 538, ../scss/fa-scss/_icons.scss */
+.fa-copyright:before {
+  content: "";
+}
+
+/* line 539, ../scss/fa-scss/_icons.scss */
+.fa-at:before {
+  content: "";
+}
+
+/* line 540, ../scss/fa-scss/_icons.scss */
+.fa-eyedropper:before {
+  content: "";
+}
+
+/* line 541, ../scss/fa-scss/_icons.scss */
+.fa-paint-brush:before {
+  content: "";
+}
+
+/* line 542, ../scss/fa-scss/_icons.scss */
+.fa-birthday-cake:before {
+  content: "";
+}
+
+/* line 543, ../scss/fa-scss/_icons.scss */
+.fa-area-chart:before {
+  content: "";
+}
+
+/* line 544, ../scss/fa-scss/_icons.scss */
+.fa-pie-chart:before {
+  content: "";
+}
+
+/* line 545, ../scss/fa-scss/_icons.scss */
+.fa-line-chart:before {
+  content: "";
+}
+
+/* line 546, ../scss/fa-scss/_icons.scss */
+.fa-lastfm:before {
+  content: "";
+}
+
+/* line 547, ../scss/fa-scss/_icons.scss */
+.fa-lastfm-square:before {
+  content: "";
+}
+
+/* line 548, ../scss/fa-scss/_icons.scss */
+.fa-toggle-off:before {
+  content: "";
+}
+
+/* line 549, ../scss/fa-scss/_icons.scss */
+.fa-toggle-on:before {
+  content: "";
+}
+
+/* line 550, ../scss/fa-scss/_icons.scss */
+.fa-bicycle:before {
+  content: "";
+}
+
+/* line 551, ../scss/fa-scss/_icons.scss */
+.fa-bus:before {
+  content: "";
+}
+
+/* line 552, ../scss/fa-scss/_icons.scss */
+.fa-ioxhost:before {
+  content: "";
+}
+
+/* line 553, ../scss/fa-scss/_icons.scss */
+.fa-angellist:before {
+  content: "";
+}
+
+/* line 554, ../scss/fa-scss/_icons.scss */
+.fa-cc:before {
+  content: "";
+}
+
+/* line 555, ../scss/fa-scss/_icons.scss */
+.fa-shekel:before,
+.fa-sheqel:before,
+.fa-ils:before {
+  content: "";
+}
+
+/* line 558, ../scss/fa-scss/_icons.scss */
+.fa-meanpath:before {
+  content: "";
+}
+
+/* line 559, ../scss/fa-scss/_icons.scss */
+.fa-buysellads:before {
+  content: "";
+}
+
+/* line 560, ../scss/fa-scss/_icons.scss */
+.fa-connectdevelop:before {
+  content: "";
+}
+
+/* line 561, ../scss/fa-scss/_icons.scss */
+.fa-dashcube:before {
+  content: "";
+}
+
+/* line 562, ../scss/fa-scss/_icons.scss */
+.fa-forumbee:before {
+  content: "";
+}
+
+/* line 563, ../scss/fa-scss/_icons.scss */
+.fa-leanpub:before {
+  content: "";
+}
+
+/* line 564, ../scss/fa-scss/_icons.scss */
+.fa-sellsy:before {
+  content: "";
+}
+
+/* line 565, ../scss/fa-scss/_icons.scss */
+.fa-shirtsinbulk:before {
+  content: "";
+}
+
+/* line 566, ../scss/fa-scss/_icons.scss */
+.fa-simplybuilt:before {
+  content: "";
+}
+
+/* line 567, ../scss/fa-scss/_icons.scss */
+.fa-skyatlas:before {
+  content: "";
+}
+
+/* line 568, ../scss/fa-scss/_icons.scss */
+.fa-cart-plus:before {
+  content: "";
+}
+
+/* line 569, ../scss/fa-scss/_icons.scss */
+.fa-cart-arrow-down:before {
+  content: "";
+}
+
+/* line 570, ../scss/fa-scss/_icons.scss */
+.fa-diamond:before {
+  content: "";
+}
+
+/* line 571, ../scss/fa-scss/_icons.scss */
+.fa-ship:before {
+  content: "";
+}
+
+/* line 572, ../scss/fa-scss/_icons.scss */
+.fa-user-secret:before {
+  content: "";
+}
+
+/* line 573, ../scss/fa-scss/_icons.scss */
+.fa-motorcycle:before {
+  content: "";
+}
+
+/* line 574, ../scss/fa-scss/_icons.scss */
+.fa-street-view:before {
+  content: "";
+}
+
+/* line 575, ../scss/fa-scss/_icons.scss */
+.fa-heartbeat:before {
+  content: "";
+}
+
+/* line 576, ../scss/fa-scss/_icons.scss */
+.fa-venus:before {
+  content: "";
+}
+
+/* line 577, ../scss/fa-scss/_icons.scss */
+.fa-mars:before {
+  content: "";
+}
+
+/* line 578, ../scss/fa-scss/_icons.scss */
+.fa-mercury:before {
+  content: "";
+}
+
+/* line 579, ../scss/fa-scss/_icons.scss */
+.fa-intersex:before,
+.fa-transgender:before {
+  content: "";
+}
+
+/* line 581, ../scss/fa-scss/_icons.scss */
+.fa-transgender-alt:before {
+  content: "";
+}
+
+/* line 582, ../scss/fa-scss/_icons.scss */
+.fa-venus-double:before {
+  content: "";
+}
+
+/* line 583, ../scss/fa-scss/_icons.scss */
+.fa-mars-double:before {
+  content: "";
+}
+
+/* line 584, ../scss/fa-scss/_icons.scss */
+.fa-venus-mars:before {
+  content: "";
+}
+
+/* line 585, ../scss/fa-scss/_icons.scss */
+.fa-mars-stroke:before {
+  content: "";
+}
+
+/* line 586, ../scss/fa-scss/_icons.scss */
+.fa-mars-stroke-v:before {
+  content: "";
+}
+
+/* line 587, ../scss/fa-scss/_icons.scss */
+.fa-mars-stroke-h:before {
+  content: "";
+}
+
+/* line 588, ../scss/fa-scss/_icons.scss */
+.fa-neuter:before {
+  content: "";
+}
+
+/* line 589, ../scss/fa-scss/_icons.scss */
+.fa-genderless:before {
+  content: "";
+}
+
+/* line 590, ../scss/fa-scss/_icons.scss */
+.fa-facebook-official:before {
+  content: "";
+}
+
+/* line 591, ../scss/fa-scss/_icons.scss */
+.fa-pinterest-p:before {
+  content: "";
+}
+
+/* line 592, ../scss/fa-scss/_icons.scss */
+.fa-whatsapp:before {
+  content: "";
+}
+
+/* line 593, ../scss/fa-scss/_icons.scss */
+.fa-server:before {
+  content: "";
+}
+
+/* line 594, ../scss/fa-scss/_icons.scss */
+.fa-user-plus:before {
+  content: "";
+}
+
+/* line 595, ../scss/fa-scss/_icons.scss */
+.fa-user-times:before {
+  content: "";
+}
+
+/* line 596, ../scss/fa-scss/_icons.scss */
+.fa-hotel:before,
+.fa-bed:before {
+  content: "";
+}
+
+/* line 598, ../scss/fa-scss/_icons.scss */
+.fa-viacoin:before {
+  content: "";
+}
+
+/* line 599, ../scss/fa-scss/_icons.scss */
+.fa-train:before {
+  content: "";
+}
+
+/* line 600, ../scss/fa-scss/_icons.scss */
+.fa-subway:before {
+  content: "";
+}
+
+/* line 601, ../scss/fa-scss/_icons.scss */
+.fa-medium:before {
+  content: "";
+}
+
+/* line 602, ../scss/fa-scss/_icons.scss */
+.fa-yc:before,
+.fa-y-combinator:before {
+  content: "";
+}
+
+/* line 604, ../scss/fa-scss/_icons.scss */
+.fa-optin-monster:before {
+  content: "";
+}
+
+/* line 605, ../scss/fa-scss/_icons.scss */
+.fa-opencart:before {
+  content: "";
+}
+
+/* line 606, ../scss/fa-scss/_icons.scss */
+.fa-expeditedssl:before {
+  content: "";
+}
+
+/* line 607, ../scss/fa-scss/_icons.scss */
+.fa-battery-4:before,
+.fa-battery:before,
+.fa-battery-full:before {
+  content: "";
+}
+
+/* line 610, ../scss/fa-scss/_icons.scss */
+.fa-battery-3:before,
+.fa-battery-three-quarters:before {
+  content: "";
+}
+
+/* line 612, ../scss/fa-scss/_icons.scss */
+.fa-battery-2:before,
+.fa-battery-half:before {
+  content: "";
+}
+
+/* line 614, ../scss/fa-scss/_icons.scss */
+.fa-battery-1:before,
+.fa-battery-quarter:before {
+  content: "";
+}
+
+/* line 616, ../scss/fa-scss/_icons.scss */
+.fa-battery-0:before,
+.fa-battery-empty:before {
+  content: "";
+}
+
+/* line 618, ../scss/fa-scss/_icons.scss */
+.fa-mouse-pointer:before {
+  content: "";
+}
+
+/* line 619, ../scss/fa-scss/_icons.scss */
+.fa-i-cursor:before {
+  content: "";
+}
+
+/* line 620, ../scss/fa-scss/_icons.scss */
+.fa-object-group:before {
+  content: "";
+}
+
+/* line 621, ../scss/fa-scss/_icons.scss */
+.fa-object-ungroup:before {
+  content: "";
+}
+
+/* line 622, ../scss/fa-scss/_icons.scss */
+.fa-sticky-note:before {
+  content: "";
+}
+
+/* line 623, ../scss/fa-scss/_icons.scss */
+.fa-sticky-note-o:before {
+  content: "";
+}
+
+/* line 624, ../scss/fa-scss/_icons.scss */
+.fa-cc-jcb:before {
+  content: "";
+}
+
+/* line 625, ../scss/fa-scss/_icons.scss */
+.fa-cc-diners-club:before {
+  content: "";
+}
+
+/* line 626, ../scss/fa-scss/_icons.scss */
+.fa-clone:before {
+  content: "";
+}
+
+/* line 627, ../scss/fa-scss/_icons.scss */
+.fa-balance-scale:before {
+  content: "";
+}
+
+/* line 628, ../scss/fa-scss/_icons.scss */
+.fa-hourglass-o:before {
+  content: "";
+}
+
+/* line 629, ../scss/fa-scss/_icons.scss */
+.fa-hourglass-1:before,
+.fa-hourglass-start:before {
+  content: "";
+}
+
+/* line 631, ../scss/fa-scss/_icons.scss */
+.fa-hourglass-2:before,
+.fa-hourglass-half:before {
+  content: "";
+}
+
+/* line 633, ../scss/fa-scss/_icons.scss */
+.fa-hourglass-3:before,
+.fa-hourglass-end:before {
+  content: "";
+}
+
+/* line 635, ../scss/fa-scss/_icons.scss */
+.fa-hourglass:before {
+  content: "";
+}
+
+/* line 636, ../scss/fa-scss/_icons.scss */
+.fa-hand-grab-o:before,
+.fa-hand-rock-o:before {
+  content: "";
+}
+
+/* line 638, ../scss/fa-scss/_icons.scss */
+.fa-hand-stop-o:before,
+.fa-hand-paper-o:before {
+  content: "";
+}
+
+/* line 640, ../scss/fa-scss/_icons.scss */
+.fa-hand-scissors-o:before {
+  content: "";
+}
+
+/* line 641, ../scss/fa-scss/_icons.scss */
+.fa-hand-lizard-o:before {
+  content: "";
+}
+
+/* line 642, ../scss/fa-scss/_icons.scss */
+.fa-hand-spock-o:before {
+  content: "";
+}
+
+/* line 643, ../scss/fa-scss/_icons.scss */
+.fa-hand-pointer-o:before {
+  content: "";
+}
+
+/* line 644, ../scss/fa-scss/_icons.scss */
+.fa-hand-peace-o:before {
+  content: "";
+}
+
+/* line 645, ../scss/fa-scss/_icons.scss */
+.fa-trademark:before {
+  content: "";
+}
+
+/* line 646, ../scss/fa-scss/_icons.scss */
+.fa-registered:before {
+  content: "";
+}
+
+/* line 647, ../scss/fa-scss/_icons.scss */
+.fa-creative-commons:before {
+  content: "";
+}
+
+/* line 648, ../scss/fa-scss/_icons.scss */
+.fa-gg:before {
+  content: "";
+}
+
+/* line 649, ../scss/fa-scss/_icons.scss */
+.fa-gg-circle:before {
+  content: "";
+}
+
+/* line 650, ../scss/fa-scss/_icons.scss */
+.fa-tripadvisor:before {
+  content: "";
+}
+
+/* line 651, ../scss/fa-scss/_icons.scss */
+.fa-odnoklassniki:before {
+  content: "";
+}
+
+/* line 652, ../scss/fa-scss/_icons.scss */
+.fa-odnoklassniki-square:before {
+  content: "";
+}
+
+/* line 653, ../scss/fa-scss/_icons.scss */
+.fa-get-pocket:before {
+  content: "";
+}
+
+/* line 654, ../scss/fa-scss/_icons.scss */
+.fa-wikipedia-w:before {
+  content: "";
+}
+
+/* line 655, ../scss/fa-scss/_icons.scss */
+.fa-safari:before {
+  content: "";
+}
+
+/* line 656, ../scss/fa-scss/_icons.scss */
+.fa-chrome:before {
+  content: "";
+}
+
+/* line 657, ../scss/fa-scss/_icons.scss */
+.fa-firefox:before {
+  content: "";
+}
+
+/* line 658, ../scss/fa-scss/_icons.scss */
+.fa-opera:before {
+  content: "";
+}
+
+/* line 659, ../scss/fa-scss/_icons.scss */
+.fa-internet-explorer:before {
+  content: "";
+}
+
+/* line 660, ../scss/fa-scss/_icons.scss */
+.fa-tv:before,
+.fa-television:before {
+  content: "";
+}
+
+/* line 662, ../scss/fa-scss/_icons.scss */
+.fa-contao:before {
+  content: "";
+}
+
+/* line 663, ../scss/fa-scss/_icons.scss */
+.fa-500px:before {
+  content: "";
+}
+
+/* line 664, ../scss/fa-scss/_icons.scss */
+.fa-amazon:before {
+  content: "";
+}
+
+/* line 665, ../scss/fa-scss/_icons.scss */
+.fa-calendar-plus-o:before {
+  content: "";
+}
+
+/* line 666, ../scss/fa-scss/_icons.scss */
+.fa-calendar-minus-o:before {
+  content: "";
+}
+
+/* line 667, ../scss/fa-scss/_icons.scss */
+.fa-calendar-times-o:before {
+  content: "";
+}
+
+/* line 668, ../scss/fa-scss/_icons.scss */
+.fa-calendar-check-o:before {
+  content: "";
+}
+
+/* line 669, ../scss/fa-scss/_icons.scss */
+.fa-industry:before {
+  content: "";
+}
+
+/* line 670, ../scss/fa-scss/_icons.scss */
+.fa-map-pin:before {
+  content: "";
+}
+
+/* line 671, ../scss/fa-scss/_icons.scss */
+.fa-map-signs:before {
+  content: "";
+}
+
+/* line 672, ../scss/fa-scss/_icons.scss */
+.fa-map-o:before {
+  content: "";
+}
+
+/* line 673, ../scss/fa-scss/_icons.scss */
+.fa-map:before {
+  content: "";
+}
+
+/* line 674, ../scss/fa-scss/_icons.scss */
+.fa-commenting:before {
+  content: "";
+}
+
+/* line 675, ../scss/fa-scss/_icons.scss */
+.fa-commenting-o:before {
+  content: "";
+}
+
+/* line 676, ../scss/fa-scss/_icons.scss */
+.fa-houzz:before {
+  content: "";
+}
+
+/* line 677, ../scss/fa-scss/_icons.scss */
+.fa-vimeo:before {
+  content: "";
+}
+
+/* line 678, ../scss/fa-scss/_icons.scss */
+.fa-black-tie:before {
+  content: "";
+}
+
+/* line 679, ../scss/fa-scss/_icons.scss */
+.fa-fonticons:before {
+  content: "";
+}
+
+/* line 680, ../scss/fa-scss/_icons.scss */
+.fa-reddit-alien:before {
+  content: "";
+}
+
+/* line 681, ../scss/fa-scss/_icons.scss */
+.fa-edge:before {
+  content: "";
+}
+
+/* line 682, ../scss/fa-scss/_icons.scss */
+.fa-credit-card-alt:before {
+  content: "";
+}
+
+/* line 683, ../scss/fa-scss/_icons.scss */
+.fa-codiepie:before {
+  content: "";
+}
+
+/* line 684, ../scss/fa-scss/_icons.scss */
+.fa-modx:before {
+  content: "";
+}
+
+/* line 685, ../scss/fa-scss/_icons.scss */
+.fa-fort-awesome:before {
+  content: "";
+}
+
+/* line 686, ../scss/fa-scss/_icons.scss */
+.fa-usb:before {
+  content: "";
+}
+
+/* line 687, ../scss/fa-scss/_icons.scss */
+.fa-product-hunt:before {
+  content: "";
+}
+
+/* line 688, ../scss/fa-scss/_icons.scss */
+.fa-mixcloud:before {
+  content: "";
+}
+
+/* line 689, ../scss/fa-scss/_icons.scss */
+.fa-scribd:before {
+  content: "";
+}
+
+/* line 690, ../scss/fa-scss/_icons.scss */
+.fa-pause-circle:before {
+  content: "";
+}
+
+/* line 691, ../scss/fa-scss/_icons.scss */
+.fa-pause-circle-o:before {
+  content: "";
+}
+
+/* line 692, ../scss/fa-scss/_icons.scss */
+.fa-stop-circle:before {
+  content: "";
+}
+
+/* line 693, ../scss/fa-scss/_icons.scss */
+.fa-stop-circle-o:before {
+  content: "";
+}
+
+/* line 694, ../scss/fa-scss/_icons.scss */
+.fa-shopping-bag:before {
+  content: "";
+}
+
+/* line 695, ../scss/fa-scss/_icons.scss */
+.fa-shopping-basket:before {
+  content: "";
+}
+
+/* line 696, ../scss/fa-scss/_icons.scss */
+.fa-hashtag:before {
+  content: "";
+}
+
+/* line 697, ../scss/fa-scss/_icons.scss */
+.fa-bluetooth:before {
+  content: "";
+}
+
+/* line 698, ../scss/fa-scss/_icons.scss */
+.fa-bluetooth-b:before {
+  content: "";
+}
+
+/* line 699, ../scss/fa-scss/_icons.scss */
+.fa-percent:before {
+  content: "";
+}
+
+/* line 700, ../scss/fa-scss/_icons.scss */
+.fa-gitlab:before {
+  content: "";
+}
+
+/* line 701, ../scss/fa-scss/_icons.scss */
+.fa-wpbeginner:before {
+  content: "";
+}
+
+/* line 702, ../scss/fa-scss/_icons.scss */
+.fa-wpforms:before {
+  content: "";
+}
+
+/* line 703, ../scss/fa-scss/_icons.scss */
+.fa-envira:before {
+  content: "";
+}
+
+/* line 704, ../scss/fa-scss/_icons.scss */
+.fa-universal-access:before {
+  content: "";
+}
+
+/* line 705, ../scss/fa-scss/_icons.scss */
+.fa-wheelchair-alt:before {
+  content: "";
+}
+
+/* line 706, ../scss/fa-scss/_icons.scss */
+.fa-question-circle-o:before {
+  content: "";
+}
+
+/* line 707, ../scss/fa-scss/_icons.scss */
+.fa-blind:before {
+  content: "";
+}
+
+/* line 708, ../scss/fa-scss/_icons.scss */
+.fa-audio-description:before {
+  content: "";
+}
+
+/* line 709, ../scss/fa-scss/_icons.scss */
+.fa-volume-control-phone:before {
+  content: "";
+}
+
+/* line 710, ../scss/fa-scss/_icons.scss */
+.fa-braille:before {
+  content: "";
+}
+
+/* line 711, ../scss/fa-scss/_icons.scss */
+.fa-assistive-listening-systems:before {
+  content: "";
+}
+
+/* line 712, ../scss/fa-scss/_icons.scss */
+.fa-asl-interpreting:before,
+.fa-american-sign-language-interpreting:before {
+  content: "";
+}
+
+/* line 714, ../scss/fa-scss/_icons.scss */
+.fa-deafness:before,
+.fa-hard-of-hearing:before,
+.fa-deaf:before {
+  content: "";
+}
+
+/* line 717, ../scss/fa-scss/_icons.scss */
+.fa-glide:before {
+  content: "";
+}
+
+/* line 718, ../scss/fa-scss/_icons.scss */
+.fa-glide-g:before {
+  content: "";
+}
+
+/* line 719, ../scss/fa-scss/_icons.scss */
+.fa-signing:before,
+.fa-sign-language:before {
+  content: "";
+}
+
+/* line 721, ../scss/fa-scss/_icons.scss */
+.fa-low-vision:before {
+  content: "";
+}
+
+/* line 722, ../scss/fa-scss/_icons.scss */
+.fa-viadeo:before {
+  content: "";
+}
+
+/* line 723, ../scss/fa-scss/_icons.scss */
+.fa-viadeo-square:before {
+  content: "";
+}
+
+/* line 724, ../scss/fa-scss/_icons.scss */
+.fa-snapchat:before {
+  content: "";
+}
+
+/* line 725, ../scss/fa-scss/_icons.scss */
+.fa-snapchat-ghost:before {
+  content: "";
+}
+
+/* line 726, ../scss/fa-scss/_icons.scss */
+.fa-snapchat-square:before {
+  content: "";
+}
+
+/* line 727, ../scss/fa-scss/_icons.scss */
+.fa-pied-piper:before {
+  content: "";
+}
+
+/* line 728, ../scss/fa-scss/_icons.scss */
+.fa-first-order:before {
+  content: "";
+}
+
+/* line 729, ../scss/fa-scss/_icons.scss */
+.fa-yoast:before {
+  content: "";
+}
+
+/* line 730, ../scss/fa-scss/_icons.scss */
+.fa-themeisle:before {
+  content: "";
+}
+
+/* line 731, ../scss/fa-scss/_icons.scss */
+.fa-google-plus-circle:before,
+.fa-google-plus-official:before {
+  content: "";
+}
+
+/* line 733, ../scss/fa-scss/_icons.scss */
+.fa-fa:before,
+.fa-font-awesome:before {
+  content: "";
+}
+
+/* line 735, ../scss/fa-scss/_icons.scss */
+.fa-handshake-o:before {
+  content: "";
+}
+
+/* line 736, ../scss/fa-scss/_icons.scss */
+.fa-envelope-open:before {
+  content: "";
+}
+
+/* line 737, ../scss/fa-scss/_icons.scss */
+.fa-envelope-open-o:before {
+  content: "";
+}
+
+/* line 738, ../scss/fa-scss/_icons.scss */
+.fa-linode:before {
+  content: "";
+}
+
+/* line 739, ../scss/fa-scss/_icons.scss */
+.fa-address-book:before {
+  content: "";
+}
+
+/* line 740, ../scss/fa-scss/_icons.scss */
+.fa-address-book-o:before {
+  content: "";
+}
+
+/* line 741, ../scss/fa-scss/_icons.scss */
+.fa-vcard:before,
+.fa-address-card:before {
+  content: "";
+}
+
+/* line 743, ../scss/fa-scss/_icons.scss */
+.fa-vcard-o:before,
+.fa-address-card-o:before {
+  content: "";
+}
+
+/* line 745, ../scss/fa-scss/_icons.scss */
+.fa-user-circle:before {
+  content: "";
+}
+
+/* line 746, ../scss/fa-scss/_icons.scss */
+.fa-user-circle-o:before {
+  content: "";
+}
+
+/* line 747, ../scss/fa-scss/_icons.scss */
+.fa-user-o:before {
+  content: "";
+}
+
+/* line 748, ../scss/fa-scss/_icons.scss */
+.fa-id-badge:before {
+  content: "";
+}
+
+/* line 749, ../scss/fa-scss/_icons.scss */
+.fa-drivers-license:before,
+.fa-id-card:before {
+  content: "";
+}
+
+/* line 751, ../scss/fa-scss/_icons.scss */
+.fa-drivers-license-o:before,
+.fa-id-card-o:before {
+  content: "";
+}
+
+/* line 753, ../scss/fa-scss/_icons.scss */
+.fa-quora:before {
+  content: "";
+}
+
+/* line 754, ../scss/fa-scss/_icons.scss */
+.fa-free-code-camp:before {
+  content: "";
+}
+
+/* line 755, ../scss/fa-scss/_icons.scss */
+.fa-telegram:before {
+  content: "";
+}
+
+/* line 756, ../scss/fa-scss/_icons.scss */
+.fa-thermometer-4:before,
+.fa-thermometer:before,
+.fa-thermometer-full:before {
+  content: "";
+}
+
+/* line 759, ../scss/fa-scss/_icons.scss */
+.fa-thermometer-3:before,
+.fa-thermometer-three-quarters:before {
+  content: "";
+}
+
+/* line 761, ../scss/fa-scss/_icons.scss */
+.fa-thermometer-2:before,
+.fa-thermometer-half:before {
+  content: "";
+}
+
+/* line 763, ../scss/fa-scss/_icons.scss */
+.fa-thermometer-1:before,
+.fa-thermometer-quarter:before {
+  content: "";
+}
+
+/* line 765, ../scss/fa-scss/_icons.scss */
+.fa-thermometer-0:before,
+.fa-thermometer-empty:before {
+  content: "";
+}
+
+/* line 767, ../scss/fa-scss/_icons.scss */
+.fa-shower:before {
+  content: "";
+}
+
+/* line 768, ../scss/fa-scss/_icons.scss */
+.fa-bathtub:before,
+.fa-s15:before,
+.fa-bath:before {
+  content: "";
+}
+
+/* line 771, ../scss/fa-scss/_icons.scss */
+.fa-podcast:before {
+  content: "";
+}
+
+/* line 772, ../scss/fa-scss/_icons.scss */
+.fa-window-maximize:before {
+  content: "";
+}
+
+/* line 773, ../scss/fa-scss/_icons.scss */
+.fa-window-minimize:before {
+  content: "";
+}
+
+/* line 774, ../scss/fa-scss/_icons.scss */
+.fa-window-restore:before {
+  content: "";
+}
+
+/* line 775, ../scss/fa-scss/_icons.scss */
+.fa-times-rectangle:before,
+.fa-window-close:before {
+  content: "";
+}
+
+/* line 777, ../scss/fa-scss/_icons.scss */
+.fa-times-rectangle-o:before,
+.fa-window-close-o:before {
+  content: "";
+}
+
+/* line 779, ../scss/fa-scss/_icons.scss */
+.fa-bandcamp:before {
+  content: "";
+}
+
+/* line 780, ../scss/fa-scss/_icons.scss */
+.fa-grav:before {
+  content: "";
+}
+
+/* line 781, ../scss/fa-scss/_icons.scss */
+.fa-etsy:before {
+  content: "";
+}
+
+/* line 782, ../scss/fa-scss/_icons.scss */
+.fa-imdb:before {
+  content: "";
+}
+
+/* line 783, ../scss/fa-scss/_icons.scss */
+.fa-ravelry:before {
+  content: "";
+}
+
+/* line 784, ../scss/fa-scss/_icons.scss */
+.fa-eercast:before {
+  content: "";
+}
+
+/* line 785, ../scss/fa-scss/_icons.scss */
+.fa-microchip:before {
+  content: "";
+}
+
+/* line 786, ../scss/fa-scss/_icons.scss */
+.fa-snowflake-o:before {
+  content: "";
+}
+
+/* line 787, ../scss/fa-scss/_icons.scss */
+.fa-superpowers:before {
+  content: "";
+}
+
+/* line 788, ../scss/fa-scss/_icons.scss */
+.fa-wpexplorer:before {
+  content: "";
+}
+
+/* line 789, ../scss/fa-scss/_icons.scss */
+.fa-meetup:before {
+  content: "";
+}
+
+/* line 4, ../scss/fa-scss/_screen-reader.scss */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* line 51, ../scss/fa-scss/_mixins.scss */
+.sr-only-focusable:active, .sr-only-focusable:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+
+/* normalize.css 2012-07-07T09:50 UTC - http://github.com/necolas/normalize.css */
+/* ==========================================================================
+   HTML5 display definitions
+   ========================================================================== */
+/**
+ * Correct `block` display not defined in IE 8/9.
+ */
+/* line 12, ../scss/partials/_normalize.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+/**
+ * Correct `inline-block` display not defined in IE 8/9.
+ */
+/* line 31, ../scss/partials/_normalize.scss */
+audio,
+canvas,
+video {
+  display: inline-block;
+}
+
+/**
+ * Prevent modern browsers from displaying `audio` without controls.
+ * Remove excess height in iOS 5 devices.
+ */
+/* line 42, ../scss/partials/_normalize.scss */
+audio:not([controls]) {
+  display: none;
+  height: 0;
+}
+
+/**
+ * Address `[hidden]` styling not present in IE 8/9.
+ * Hide the `template` element in IE, Safari, and Firefox < 22.
+ */
+/* line 52, ../scss/partials/_normalize.scss */
+[hidden],
+template {
+  display: none;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+/**
+ * 1. Set default font family to sans-serif.
+ * 2. Prevent iOS text size adjust after orientation change, without disabling
+ *    user zoom.
+ */
+/* line 67, ../scss/partials/_normalize.scss */
+html {
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+}
+
+/**
+ * Remove default margin.
+ */
+/* line 77, ../scss/partials/_normalize.scss */
+body {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Links
+   ========================================================================== */
+/**
+ * Remove the gray background color from active links in IE 10.
+ */
+/* line 89, ../scss/partials/_normalize.scss */
+a {
+  background: transparent;
+}
+
+/**
+ * Address `outline` inconsistency between Chrome and other browsers.
+ */
+/* line 97, ../scss/partials/_normalize.scss */
+a:focus {
+  outline: thin dotted;
+}
+
+/**
+ * Improve readability when focused and also mouse hovered in all browsers.
+ */
+/* line 105, ../scss/partials/_normalize.scss */
+a:active,
+a:hover {
+  outline: 0;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+/**
+ * Address variable `h1` font-size and margin within `section` and `article`
+ * contexts in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 119, ../scss/partials/_normalize.scss */
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/**
+ * Address styling not present in IE 8/9, Safari 5, and Chrome.
+ */
+/* line 128, ../scss/partials/_normalize.scss */
+abbr[title] {
+  border-bottom: 1px dotted;
+}
+
+/**
+ * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 136, ../scss/partials/_normalize.scss */
+b,
+strong,
+.strong {
+  font-weight: bold;
+}
+
+/**
+ * Address styling not present in Safari 5 and Chrome.
+ */
+/* line 146, ../scss/partials/_normalize.scss */
+dfn,
+em,
+.em {
+  font-style: italic;
+}
+
+/**
+ * Address differences between Firefox and other browsers.
+ */
+/* line 156, ../scss/partials/_normalize.scss */
+hr {
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  height: 0;
+}
+
+/*
+ * proper formatting (http://blog.fontdeck.com/post/9037028497/hyphens)
+*/
+/* line 166, ../scss/partials/_normalize.scss */
+p {
+  -webkit-hyphens: auto;
+  -epub-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+}
+
+/*
+ * Addresses margins set differently in IE6/7.
+ */
+/* line 177, ../scss/partials/_normalize.scss */
+pre {
+  margin: 0;
+}
+
+/**
+ * Correct font family set oddly in Safari 5 and Chrome.
+ */
+/* line 185, ../scss/partials/_normalize.scss */
+code,
+kbd,
+pre,
+samp {
+  font-family: monospace, serif;
+  font-size: 1em;
+}
+
+/**
+ * Improve readability of pre-formatted text in all browsers.
+ */
+/* line 197, ../scss/partials/_normalize.scss */
+pre {
+  white-space: pre-wrap;
+}
+
+/**
+ * Set consistent quote types.
+ */
+/* line 205, ../scss/partials/_normalize.scss */
+q {
+  quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+/**
+ * Address inconsistent and variable font size in all browsers.
+ */
+/* line 212, ../scss/partials/_normalize.scss */
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+/* line 218, ../scss/partials/_normalize.scss */
+small, .small {
+  font-size: 75%;
+}
+
+/**
+ * Prevent `sub` and `sup` affecting `line-height` in all browsers.
+ */
+/* line 226, ../scss/partials/_normalize.scss */
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+/* line 234, ../scss/partials/_normalize.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 238, ../scss/partials/_normalize.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* ==========================================================================
+  Lists
+========================================================================== */
+/*
+ * Addresses margins set differently in IE6/7.
+ */
+/* line 250, ../scss/partials/_normalize.scss */
+dl,
+menu,
+ol,
+ul {
+  margin: 1em 0;
+}
+
+/* line 257, ../scss/partials/_normalize.scss */
+dd {
+  margin: 0;
+}
+
+/*
+ * Addresses paddings set differently in IE6/7.
+ */
+/* line 265, ../scss/partials/_normalize.scss */
+menu {
+  padding: 0 0 0 40px;
+}
+
+/* line 269, ../scss/partials/_normalize.scss */
+ol,
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+/*
+ * Corrects list images handled incorrectly in IE7.
+ */
+/* line 279, ../scss/partials/_normalize.scss */
+nav ul,
+nav ol {
+  list-style: none;
+  list-style-image: none;
+}
+
+/* ==========================================================================
+  Embedded content
+========================================================================== */
+/**
+ * Remove border when inside `a` element in IE 8/9.
+ */
+/* line 293, ../scss/partials/_normalize.scss */
+img {
+  border: 0;
+}
+
+/**
+ * Correct overflow displayed oddly in IE 9.
+ */
+/* line 301, ../scss/partials/_normalize.scss */
+svg:not(:root) {
+  overflow: hidden;
+}
+
+/* ==========================================================================
+   Figures
+   ========================================================================== */
+/**
+ * Address margin not present in IE 8/9 and Safari 5.
+ */
+/* line 313, ../scss/partials/_normalize.scss */
+figure {
+  margin: 0;
+}
+
+/* ==========================================================================
+   Forms
+   ========================================================================== */
+/**
+ * Define consistent border, margin, and padding.
+ */
+/* line 325, ../scss/partials/_normalize.scss */
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 2px;
+  padding: 0.35em 0.625em 0.75em;
+}
+
+/**
+ * 1. Correct `color` not being inherited in IE 8/9.
+ * 2. Remove padding so people aren't caught out if they zero out fieldsets.
+ */
+/* line 336, ../scss/partials/_normalize.scss */
+legend {
+  border: 0;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Correct font family not being inherited in all browsers.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
+ */
+/* line 347, ../scss/partials/_normalize.scss */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+/**
+ * Address Firefox 4+ setting `line-height` on `input` using `!important` in
+ * the UA stylesheet.
+ */
+/* line 361, ../scss/partials/_normalize.scss */
+button,
+input {
+  line-height: normal;
+}
+
+/**
+ * Address inconsistent `text-transform` inheritance for `button` and `select`.
+ * All other form control elements do not inherit `text-transform` values.
+ * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
+ * Correct `select` style inheritance in Firefox 4+ and Opera.
+ */
+/* line 373, ../scss/partials/_normalize.scss */
+button,
+select {
+  text-transform: none;
+}
+
+/**
+ * 1. Avoid the WebKit bug in Android 4.0.* where (2) destroys native `audio`
+ *    and `video` controls.
+ * 2. Correct inability to style clickable `input` types in iOS.
+ * 3. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ */
+/* line 386, ../scss/partials/_normalize.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  /* 2 */
+  cursor: pointer;
+  /* 3 */
+}
+
+/**
+ * Re-set default cursor for disabled elements.
+ */
+/* line 398, ../scss/partials/_normalize.scss */
+button[disabled],
+html input[disabled] {
+  cursor: default;
+}
+
+/**
+ * 1. Address box sizing set to `content-box` in IE 8/9/10.
+ * 2. Remove excess padding in IE 8/9/10.
+ */
+/* line 408, ../scss/partials/_normalize.scss */
+input[type="checkbox"],
+input[type="radio"] {
+  box-sizing: border-box;
+  /* 1 */
+  padding: 0;
+  /* 2 */
+}
+
+/**
+ * 1. Address `appearance` set to `searchfield` in Safari 5 and Chrome.
+ * 2. Address `box-sizing` set to `border-box` in Safari 5 and Chrome
+ *    (include `-moz` to future-proof).
+ */
+/* line 420, ../scss/partials/_normalize.scss */
+input[type="search"] {
+  -webkit-appearance: textfield;
+  /* 1 */
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  /* 2 */
+  box-sizing: content-box;
+}
+
+/**
+ * Remove inner padding and search cancel button in Safari 5 and Chrome
+ * on OS X.
+ */
+/* line 432, ../scss/partials/_normalize.scss */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+/* line 441, ../scss/partials/_normalize.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+/**
+ * 1. Remove default vertical scrollbar in IE 8/9.
+ * 2. Improve readability and alignment in all browsers.
+ */
+/* line 452, ../scss/partials/_normalize.scss */
+textarea {
+  overflow: auto;
+  /* 1 */
+  vertical-align: top;
+  /* 2 */
+}
+
+/* ==========================================================================
+   Tables
+   ========================================================================== */
+/**
+ * Remove most spacing between table cells.
+ */
+/* line 465, ../scss/partials/_normalize.scss */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* line 472, ../scss/partials/_normalize.scss */
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 479, ../scss/partials/_normalize.scss */
+.image-replacement,
+.ir {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/* line 487, ../scss/partials/_normalize.scss */
+.clearfix, .cf, .comment-respond {
+  zoom: 1;
+}
+/* line 489, ../scss/partials/_normalize.scss */
+.clearfix:before, .clearfix:after, .cf:before, .comment-respond:before, .cf:after, .comment-respond:after {
+  content: "";
+  display: table;
+}
+/* line 490, ../scss/partials/_normalize.scss */
+.clearfix:after, .cf:after, .comment-respond:after {
+  clear: both;
+}
+
+/*
+use the best ampersand
+http://simplebits.com/notebook/2008/08/14/ampersands-2/
+*/
+/* line 497, ../scss/partials/_normalize.scss */
+span.amp {
+  font-family: Baskerville,'Goudy Old Style',Palatino,'Book Antiqua',serif !important;
+  font-style: italic;
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Variables
+
+Here is where we declare all our variables like colors, fonts,
+base values, and defaults. We want to make sure this file ONLY
+contains variables that way our files don't get all messy.
+No one likes a mess.
+
+******************************************************************/
+/*********************
+COLORS
+Need help w/ choosing your colors? Try this site out:
+http://0to255.com/
+*********************/
+/*InduKo Brand Colors */
+/*Theme defaults */
+/*
+Here's a great tutorial on how to
+use color variables properly:
+http://sachagreif.com/sass-color-variables/
+*/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Typography
+
+Need to import a font or set of icons for your site? Drop them in
+here or just use this to establish your typographical grid. Or not.
+Do whatever you want to...GOSH!
+
+Helpful Articles:
+http://trentwalton.com/2012/06/19/fluid-type/
+http://ia.net/blog/responsive-typography-the-basics/
+http://alistapart.com/column/responsive-typography-is-a-physical-discipline
+
+******************************************************************/
+/*********************
+FONT FACE (IN YOUR FACE)
+*********************/
+/*  To embed your own fonts, use this syntax
+  and place your fonts inside the
+  library/fonts folder. For more information
+  on embedding fonts, go to:
+  http://www.fontsquirrel.com/
+  Be sure to remove the comment brackets.
+*/
+/*  @font-face {
+      font-family: 'Metropolis';
+      src: url('library/fonts/font-name.eot');
+      src: url('library/fonts/font-name.eot?#iefix') format('embedded-opentype'),
+             url('library/fonts/font-name.woff') format('woff'),
+             url('library/fonts/font-name.ttf') format('truetype'),
+             // url('library/fonts/font-name.svg#font-name') format('svg');
+      font-weight: normal;
+      font-style: normal;
+  }
+*/
+@font-face {
+  font-family: 'Metropolis';
+  src: url("../fonts/metropolis-regular-webfont.eot");
+  src: url("../fonts/metropolis-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/metropolis-regular-webfont.woff") format("woff"), url("../fonts/metropolis-regular-webfont.ttf") format("truetype"), url("../fonts/metropolis-regular-webfont.svg#font-name") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Metropolis';
+  src: url("../fonts/metropolis-regularitalic-webfont.eot");
+  src: url("../fonts/metropolis-regularitalic-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/metropolis-regularitalic-webfont.woff") format("woff"), url("../fonts/metropolis-regularitalic-webfont.ttf") format("truetype"), url("../fonts/metropolis-regularitalic-webfont.svg#font-name") format("svg");
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Metropolis';
+  src: url("../fonts/metropolis-bold-webfont.eot");
+  src: url("../fonts/metropolis-bold-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/metropolis-bold-webfont.woff") format("woff"), url("../fonts/metropolis-bold-webfont.ttf") format("truetype"), url("../fonts/metropolis-bold-webfont.svg#font-name") format("svg");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Metropolis';
+  src: url("../fonts/metropolis-black-webfont.eot");
+  src: url("../fonts/metropolis-black-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/metropolis-black-webfont.woff") format("woff"), url("../fonts/metropolis-black-webfont.ttf") format("truetype"), url("../fonts/metropolis-black-webfont.svg#font-name") format("svg");
+  font-weight: 800;
+  font-style: normal;
+}
+/*
+The following is based of Typebase:
+https://github.com/devinhunt/typebase.css
+I've edited it a bit, but it's a nice starting point.
+*/
+/*
+ i imported this one in the functions file so bones would look sweet.
+ don't forget to remove it for your site.
+*/
+/*
+some nice typographical defaults
+more here: http://www.newnet-soft.com/blog/csstypography
+*/
+/* line 113, ../scss/partials/_typography.scss */
+p {
+  -ms-word-wrap: break-word;
+  word-break: break-word;
+  word-wrap: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  hyphens: auto;
+  -webkit-hyphenate-before: 2;
+  -webkit-hyphenate-after: 3;
+  hyphenate-lines: 3;
+  -webkit-font-feature-settings: "liga", "dlig";
+  -moz-font-feature-settings: "liga=1, dlig=1";
+  -ms-font-feature-settings: "liga", "dlig";
+  -o-font-feature-settings: "liga", "dlig";
+  font-feature-settings: "liga", "dlig";
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Sass Functions
+
+You can do a lot of really cool things in Sass. Functions help you
+make repeated actions a lot easier. They are really similar to mixins,
+but can be used for so much more.
+
+Anyway, keep them all in here so it's easier to find when you're
+looking for one.
+
+For more info on functions, go here:
+http://sass-lang.com/documentation/Sass/Script/Functions.html
+
+******************************************************************/
+/*********************
+COLOR FUNCTIONS
+These are helpful when you're working
+with shadows and such things. It's essentially
+a quicker way to write RGBA.
+
+Example:
+box-shadow: 0 0 4px black(0.3);
+compiles to:
+box-shadow: 0 0 4px rgba(0,0,0,0.3);
+*********************/
+/*********************
+RESPONSIVE HELPER FUNCTION
+If you're creating a responsive site, then
+you've probably already read
+Responsive Web Design: http://www.abookapart.com/products/responsive-web-design
+
+Here's a nice little helper function for calculating
+target / context
+as mentioned in that book.
+
+Example:
+width: cp(650px, 1000px);
+or
+width: calc-percent(650px, 1000px);
+both compile to:
+width: 65%;
+*********************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Mixins Stylesheet
+
+This is where you can take advantage of Sass' great features: Mixins.
+I won't go in-depth on how they work exactly,
+there are a few articles below that will help do that. What I will
+tell you is that this will help speed up simple changes like
+changing a color or adding CSS3 techniques gradients.
+
+A WORD OF WARNING: It's very easy to overdo it here. Be careful and
+remember less is more.
+
+Helpful:
+http://sachagreif.com/useful-sass-mixins/
+http://thesassway.com/intermediate/leveraging-sass-mixins-for-cleaner-code
+http://web-design-weekly.com/blog/2013/05/12/handy-sass-mixins/
+
+******************************************************************/
+/*********************
+TRANSITION
+*********************/
+/*
+I totally rewrote this to be cleaner and easier to use.
+You'll need to be using Sass 3.2+ for these to work.
+Thanks to @anthonyshort for the inspiration on these.
+USAGE: @include transition(all 0.2s ease-in-out);
+*/
+/*********************
+CSS3 GRADIENTS
+Be careful with these since they can
+really slow down your CSS. Don't overdo it.
+*********************/
+/* @include css-gradient(#dfdfdf,#f8f8f8); */
+/*********************
+BOX SIZING
+*********************/
+/* @include box-sizing(border-box); */
+/* NOTE: value of "padding-box" is only supported in Gecko. So
+probably best not to use it. I mean, were you going to anyway? */
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Grid Stylesheet
+
+I've seperated the grid so you can swap it out easily. It's
+called at the top the style.scss stylesheet.
+
+There are a ton of grid solutions out there. You should definitely
+experiment with your own. Here are some recommendations:
+
+http://gridsetapp.com - Love this site. Responsive Grids made easy.
+http://susy.oddbird.net/ - Grids using Compass. Very elegant.
+http://gridpak.com/ - Create your own responsive grid.
+https://github.com/dope/lemonade - Neat lightweight grid.
+
+
+The grid below is a custom built thingy I modeled a bit after
+Gridset. It's VERY basic and probably shouldn't be used on
+your client projects. The idea is you learn how to roll your
+own grids. It's better in the long run and allows you full control
+over your project's layout.
+
+******************************************************************/
+/* line 35, ../scss/partials/_grid.scss */
+.last-col {
+  float: right;
+  padding-right: 0 !important;
+}
+
+/*
+Mobile Grid Styles
+These are the widths for the mobile grid.
+There are four types, but you can add or customize
+them however you see fit.
+*/
+@media (max-width: 767px) {
+  /* line 49, ../scss/partials/_grid.scss */
+  .m-all {
+    float: left;
+    padding-right: 0.75em;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  /* line 55, ../scss/partials/_grid.scss */
+  .m-1of2 {
+    float: left;
+    padding-right: 0.75em;
+    width: 50%;
+  }
+
+  /* line 60, ../scss/partials/_grid.scss */
+  .m-1of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 33.33%;
+  }
+
+  /* line 65, ../scss/partials/_grid.scss */
+  .m-2of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 66.66%;
+  }
+
+  /* line 70, ../scss/partials/_grid.scss */
+  .m-1of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 25%;
+  }
+
+  /* line 75, ../scss/partials/_grid.scss */
+  .m-3of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 75%;
+  }
+}
+/* Portrait tablet to landscape */
+@media (min-width: 768px) and (max-width: 1029px) {
+  /* line 87, ../scss/partials/_grid.scss */
+  .t-all {
+    float: left;
+    padding-right: 0.75em;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  /* line 93, ../scss/partials/_grid.scss */
+  .t-1of2 {
+    float: left;
+    padding-right: 0.75em;
+    width: 50%;
+  }
+
+  /* line 98, ../scss/partials/_grid.scss */
+  .t-1of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 33.33%;
+  }
+
+  /* line 103, ../scss/partials/_grid.scss */
+  .t-2of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 66.66%;
+  }
+
+  /* line 108, ../scss/partials/_grid.scss */
+  .t-1of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 25%;
+  }
+
+  /* line 113, ../scss/partials/_grid.scss */
+  .t-3of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 75%;
+  }
+
+  /* line 118, ../scss/partials/_grid.scss */
+  .t-1of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 20%;
+  }
+
+  /* line 123, ../scss/partials/_grid.scss */
+  .t-2of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 40%;
+  }
+
+  /* line 128, ../scss/partials/_grid.scss */
+  .t-3of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 60%;
+  }
+
+  /* line 133, ../scss/partials/_grid.scss */
+  .t-4of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 80%;
+  }
+}
+/* Landscape to small desktop */
+@media (min-width: 1030px) {
+  /* line 143, ../scss/partials/_grid.scss */
+  .d-all {
+    float: left;
+    padding-right: 0.75em;
+    width: 100%;
+    padding-right: 0;
+  }
+
+  /* line 149, ../scss/partials/_grid.scss */
+  .d-1of2 {
+    float: left;
+    padding-right: 0.75em;
+    width: 50%;
+  }
+
+  /* line 154, ../scss/partials/_grid.scss */
+  .d-1of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 33.33%;
+  }
+
+  /* line 159, ../scss/partials/_grid.scss */
+  .d-2of3 {
+    float: left;
+    padding-right: 0.75em;
+    width: 66.66%;
+  }
+
+  /* line 164, ../scss/partials/_grid.scss */
+  .d-1of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 25%;
+  }
+
+  /* line 169, ../scss/partials/_grid.scss */
+  .d-3of4 {
+    float: left;
+    padding-right: 0.75em;
+    width: 75%;
+  }
+
+  /* line 174, ../scss/partials/_grid.scss */
+  .d-1of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 20%;
+  }
+
+  /* line 179, ../scss/partials/_grid.scss */
+  .d-2of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 40%;
+  }
+
+  /* line 184, ../scss/partials/_grid.scss */
+  .d-3of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 60%;
+  }
+
+  /* line 189, ../scss/partials/_grid.scss */
+  .d-4of5 {
+    float: left;
+    padding-right: 0.75em;
+    width: 80%;
+  }
+
+  /* line 194, ../scss/partials/_grid.scss */
+  .d-1of6 {
+    float: left;
+    padding-right: 0.75em;
+    width: 16.6666666667%;
+  }
+
+  /* line 199, ../scss/partials/_grid.scss */
+  .d-1of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 14.2857142857%;
+  }
+
+  /* line 204, ../scss/partials/_grid.scss */
+  .d-2of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 28.5714286%;
+  }
+
+  /* line 209, ../scss/partials/_grid.scss */
+  .d-3of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 42.8571429%;
+  }
+
+  /* line 214, ../scss/partials/_grid.scss */
+  .d-4of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 57.1428572%;
+  }
+
+  /* line 219, ../scss/partials/_grid.scss */
+  .d-5of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 71.4285715%;
+  }
+
+  /* line 224, ../scss/partials/_grid.scss */
+  .d-6of7 {
+    float: left;
+    padding-right: 0.75em;
+    width: 85.7142857%;
+  }
+
+  /* line 229, ../scss/partials/_grid.scss */
+  .d-1of8 {
+    float: left;
+    padding-right: 0.75em;
+    width: 12.5%;
+  }
+
+  /* line 234, ../scss/partials/_grid.scss */
+  .d-1of9 {
+    float: left;
+    padding-right: 0.75em;
+    width: 11.1111111111%;
+  }
+
+  /* line 239, ../scss/partials/_grid.scss */
+  .d-1of10 {
+    float: left;
+    padding-right: 0.75em;
+    width: 10%;
+  }
+
+  /* line 244, ../scss/partials/_grid.scss */
+  .d-1of11 {
+    float: left;
+    padding-right: 0.75em;
+    width: 9.09090909091%;
+  }
+
+  /* line 249, ../scss/partials/_grid.scss */
+  .d-1of12 {
+    float: left;
+    padding-right: 0.75em;
+    width: 8.33%;
+  }
+}
+/*********************
+IMPORTING MODULES
+Modules are reusable blocks or elements we use throughout the project.
+We can break them up as much as we want or just keep them all in one.
+I mean, you can do whatever you want. The world is your oyster. Unless
+you hate oysters, then the world is your peanut butter & jelly sandwich.
+*********************/
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Alert Styles
+
+If you want to use these alerts in your design, you can. If not,
+you can just remove this stylesheet.
+
+******************************************************************/
+/* line 15, ../scss/modules/_alerts.scss */
+.alert-help, .alert-info, .alert-error, .alert-success {
+  margin: 10px;
+  padding: 5px 18px;
+  border: 1px solid;
+}
+
+/* line 21, ../scss/modules/_alerts.scss */
+.alert-help {
+  border-color: #e8dc59;
+  background: #ebe16f;
+}
+
+/* line 27, ../scss/modules/_alerts.scss */
+.alert-info {
+  border-color: #bfe4f4;
+  background: #d5edf8;
+}
+
+/* line 33, ../scss/modules/_alerts.scss */
+.alert-error {
+  border-color: #f8cdce;
+  background: #fbe3e4;
+}
+
+/* line 39, ../scss/modules/_alerts.scss */
+.alert-success {
+  border-color: #deeaae;
+  background: #e6efc2;
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Button Styles
+
+Buttons are a pretty important part of your site's style, so it's
+important to have a consistent baseline for them. Use this stylesheet
+to create all kinds of buttons.
+
+Helpful Links:
+http://galp.in/blog/2011/08/02/the-ui-guide-part-1-buttons/
+
+******************************************************************/
+/*********************
+BUTTON DEFAULTS
+We're gonna use a placeholder selector here
+so we can use common styles. We then use this
+to load up the defaults in all our buttons.
+
+Here's a quick video to show how it works:
+http://www.youtube.com/watch?v=hwdVpKiJzac
+
+*********************/
+/* line 27, ../scss/modules/_buttons.scss */
+.blue-btn, .comment-reply-link, #submit {
+  display: inline-block;
+  position: relative;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1em;
+  line-height: 2.5em;
+  font-weight: normal;
+  padding: 0 24px;
+  border-radius: 4px;
+  border: 0;
+  cursor: pointer;
+  -webkit-transition: background-color 0.14s ease-in-out;
+  transition: background-color 0.14s ease-in-out;
+}
+/* line 44, ../scss/modules/_buttons.scss */
+.blue-btn:hover, .comment-reply-link:hover, #submit:hover, .blue-btn:focus, .comment-reply-link:focus, #submit:focus {
+  color: #fff;
+  text-decoration: none;
+  outline: none;
+}
+/* line 51, ../scss/modules/_buttons.scss */
+.blue-btn:active, .comment-reply-link:active, #submit:active {
+  top: 1px;
+}
+
+/*
+An example button.
+You can use this example if you want. Just replace all the variables
+and it will create a button dependant on those variables.
+*/
+/* line 62, ../scss/modules/_buttons.scss */
+.blue-btn, .comment-reply-link, #submit {
+  background-color: #6675ae;
+}
+/* line 66, ../scss/modules/_buttons.scss */
+.blue-btn:hover, .comment-reply-link:hover, #submit:hover, .blue-btn:focus, .comment-reply-link:focus, #submit:focus {
+  background-color: #182458;
+}
+/* line 71, ../scss/modules/_buttons.scss */
+.blue-btn:active, .comment-reply-link:active, #submit:active {
+  background-color: #131c44;
+}
+
+/******************************************************************
+Site Name:
+Author:
+
+Stylesheet: Form Styles
+
+We put all the form and button styles in here to setup a consistent
+look. If we need to customize them, we can do this in the main
+stylesheets and just override them. Easy Peasy.
+
+You're gonna see a few data-uri thingies down there. If you're not
+sure what they are, check this link out:
+http://css-tricks.com/data-uris/
+If you want to create your own, use this helpful link:
+http://websemantics.co.uk/online_tools/image_to_data_uri_convertor/
+
+******************************************************************/
+/*********************
+INPUTS
+*********************/
+/* line 24, ../scss/modules/_forms.scss */
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+select,
+textarea,
+.field {
+  display: block;
+  height: 40px;
+  line-height: 1em;
+  padding: 0 12px;
+  margin-bottom: 14px;
+  font-size: 1em;
+  color: #5c6b80;
+  border-radius: 3px;
+  vertical-align: middle;
+  box-shadow: none;
+  border: 0;
+  width: 100%;
+  max-width: 400px;
+  font-family: "Metropolis", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background-color: #eaedf2;
+  -webkit-transition: background-color 0.24s ease-in-out;
+  transition: background-color 0.24s ease-in-out;
+}
+/* line 59, ../scss/modules/_forms.scss */
+input[type="text"]:focus, input[type="text"]:active,
+input[type="password"]:focus,
+input[type="password"]:active,
+input[type="datetime"]:focus,
+input[type="datetime"]:active,
+input[type="datetime-local"]:focus,
+input[type="datetime-local"]:active,
+input[type="date"]:focus,
+input[type="date"]:active,
+input[type="month"]:focus,
+input[type="month"]:active,
+input[type="time"]:focus,
+input[type="time"]:active,
+input[type="week"]:focus,
+input[type="week"]:active,
+input[type="number"]:focus,
+input[type="number"]:active,
+input[type="email"]:focus,
+input[type="email"]:active,
+input[type="url"]:focus,
+input[type="url"]:active,
+input[type="search"]:focus,
+input[type="search"]:active,
+input[type="tel"]:focus,
+input[type="tel"]:active,
+input[type="color"]:focus,
+input[type="color"]:active,
+select:focus,
+select:active,
+textarea:focus,
+textarea:active,
+.field:focus,
+.field:active {
+  background-color: #f7f8fa;
+  outline: none;
+}
+/* line 66, ../scss/modules/_forms.scss */
+input[type="text"].error, input[type="text"].is-invalid,
+input[type="password"].error,
+input[type="password"].is-invalid,
+input[type="datetime"].error,
+input[type="datetime"].is-invalid,
+input[type="datetime-local"].error,
+input[type="datetime-local"].is-invalid,
+input[type="date"].error,
+input[type="date"].is-invalid,
+input[type="month"].error,
+input[type="month"].is-invalid,
+input[type="time"].error,
+input[type="time"].is-invalid,
+input[type="week"].error,
+input[type="week"].is-invalid,
+input[type="number"].error,
+input[type="number"].is-invalid,
+input[type="email"].error,
+input[type="email"].is-invalid,
+input[type="url"].error,
+input[type="url"].is-invalid,
+input[type="search"].error,
+input[type="search"].is-invalid,
+input[type="tel"].error,
+input[type="tel"].is-invalid,
+input[type="color"].error,
+input[type="color"].is-invalid,
+select.error,
+select.is-invalid,
+textarea.error,
+textarea.is-invalid,
+.field.error,
+.field.is-invalid {
+  color: #fbe3e4;
+  border-color: #fbe3e4;
+  background-color: #fff;
+  background-position: 99% center;
+  background-repeat: no-repeat;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2NDM0NDREQkYwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2NDM0NDREQ0YwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjQ3ODRGRkE2RjA0QTExRTI5MjhERkZBMTMzMDYwNzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY0MzQ0NERBRjA0QjExRTI5MjhERkZBMTMzMDYwNzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+U8iT5wAAAedJREFUeNqk1U9I02Ecx/HtV3aIFAc1hcRDUoGXRAq0oNLA2CrsEFmHbikZu0iQYIFGYAiegkCpLipBxPpDEBMUzB0EhSG2LhG7hMR2GviPgUTvB57Bw8P3+U23B16HPX8+e/b8nt93wezZSMCnhXETF3AcB5BDCnH8Dq98ExcGHcFn8Ah3cdDni+fxnPDv9oAnTB7CKu6VCFXtChZy56LxUjt+jfuB8toSOth9wd7xWAWhqrUjYR/FRTwWJm+iIPT/w7bQf5ljiZnBg45dtKFX6H+LU8gIY8OEV6vgTkStwXWE8BPTGDHGPqNPz2mCfSOOYkA99TvCt1bhGPL68zMcwmncMuape10jrI+q4BbHi/FLn31S9z2x5tRhTc+1W506ipM+T3oRD4X+8+qtc4SqFvL0z/Fr14S+Szjis8bz9Lvvaq8cwS/wwGfdlqfPSWqTiFlX77o13u9Ym1PBs8JAytpRoy44X9Ft9E/gvbA+rYKn8NcaaMVc8UHgBw4b9/iqUQZ6hOAJFbyDcUflmsEX4a6+wTtHGfhAIUqa1U29Zc2BytouThD8x6xuN5CtMPi2CrXLZkZf/HyZoRFCP7n+QVR4PV7uI/AjGghN7OU/r1ilnqILtfpNC+o6vIFljBKYlhb/F2AAgaBsWR5wRiIAAAAASUVORK5CYII=);
+  outline-color: #fbe3e4;
+}
+/* line 78, ../scss/modules/_forms.scss */
+input[type="text"].success, input[type="text"].is-valid,
+input[type="password"].success,
+input[type="password"].is-valid,
+input[type="datetime"].success,
+input[type="datetime"].is-valid,
+input[type="datetime-local"].success,
+input[type="datetime-local"].is-valid,
+input[type="date"].success,
+input[type="date"].is-valid,
+input[type="month"].success,
+input[type="month"].is-valid,
+input[type="time"].success,
+input[type="time"].is-valid,
+input[type="week"].success,
+input[type="week"].is-valid,
+input[type="number"].success,
+input[type="number"].is-valid,
+input[type="email"].success,
+input[type="email"].is-valid,
+input[type="url"].success,
+input[type="url"].is-valid,
+input[type="search"].success,
+input[type="search"].is-valid,
+input[type="tel"].success,
+input[type="tel"].is-valid,
+input[type="color"].success,
+input[type="color"].is-valid,
+select.success,
+select.is-valid,
+textarea.success,
+textarea.is-valid,
+.field.success,
+.field.is-valid {
+  color: #e6efc2;
+  border-color: #e6efc2;
+  background-color: #fff;
+  background-position: 99% center;
+  background-repeat: no-repeat;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABYAAAAWCAYAAADEtGw7AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDo2NDM0NDRERkYwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDo2NDM0NDRFMEYwNEIxMUUyOTI4REZGQTEzMzA2MDcyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOjY0MzQ0NERERjA0QjExRTI5MjhERkZBMTMzMDYwNzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjY0MzQ0NERFRjA0QjExRTI5MjhERkZBMTMzMDYwNzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+7olkTQAAAfhJREFUeNqklU9oE0EUhzdroWjw0tBeWlDxkEaIp55TsCU9VKIgCrHBelA8CQ1Kr1WPbZrQ3gqtQqvGqxpQc2jBk6BIIaAGD4qNCKURpDSKiPi98gLDsJt//uBjsztvfnk7895sIPAw6/joGMThFJyAXn2+A+9gA57/TaY/eU0OeBgfhGm4DiGnsb7DAszxBz/NAdcKjMJLuNWCqagHbsscN5+L+hmH4QkMOe1L5jzFfNA2PgT34ajTuY7AGuZB0/hmh5m+gS0r8xv1zRvg+gGCHZiOwnF4DP3iB3sQkYxPd2C6CWfhB9Xwlus5+K1j4jXuaq3a+gM1H9OPcAa+7q9lPidZJqHbiIm7Wg22rsEI7FrPSzAMX/T+ADyAKSsu7Fr1KplehLvwCs5DvfBf65p+MypqRbO1FXK9utH4/QKuaqYTsG3E3INJv00Q46px3+XxanJ/Ute2/vqP4FKDza2KcdljIKdnhS0xXYULTaqmLMZFn8FFSFtvt6x70ExFCS5oUXspq2ssa7oEl1swFa+CGFdgtkHgPDyDKy02zyxNU6lXRUZb1EuHYayNNs+Yh5B0WQo+/8fpJnNTZFuzz2OpjoQ2QruSOQlMy35fEGmEGMxY9e1brxobw7TkWA1h6xfckUPb+JhGoE/Hpfvew7qUld/H9J8AAwDpw3WYrxcZ3QAAAABJRU5ErkJggg==);
+  outline-color: #e6efc2;
+}
+/* line 90, ../scss/modules/_forms.scss */
+input[type="text"][disabled], input[type="text"].is-disabled,
+input[type="password"][disabled],
+input[type="password"].is-disabled,
+input[type="datetime"][disabled],
+input[type="datetime"].is-disabled,
+input[type="datetime-local"][disabled],
+input[type="datetime-local"].is-disabled,
+input[type="date"][disabled],
+input[type="date"].is-disabled,
+input[type="month"][disabled],
+input[type="month"].is-disabled,
+input[type="time"][disabled],
+input[type="time"].is-disabled,
+input[type="week"][disabled],
+input[type="week"].is-disabled,
+input[type="number"][disabled],
+input[type="number"].is-disabled,
+input[type="email"][disabled],
+input[type="email"].is-disabled,
+input[type="url"][disabled],
+input[type="url"].is-disabled,
+input[type="search"][disabled],
+input[type="search"].is-disabled,
+input[type="tel"][disabled],
+input[type="tel"].is-disabled,
+input[type="color"][disabled],
+input[type="color"].is-disabled,
+select[disabled],
+select.is-disabled,
+textarea[disabled],
+textarea.is-disabled,
+.field[disabled],
+.field.is-disabled {
+  cursor: not-allowed;
+  border-color: #cfcfcf;
+  opacity: 0.6;
+}
+/* line 96, ../scss/modules/_forms.scss */
+input[type="text"][disabled]:focus, input[type="text"][disabled]:active, input[type="text"].is-disabled:focus, input[type="text"].is-disabled:active,
+input[type="password"][disabled]:focus,
+input[type="password"][disabled]:active,
+input[type="password"].is-disabled:focus,
+input[type="password"].is-disabled:active,
+input[type="datetime"][disabled]:focus,
+input[type="datetime"][disabled]:active,
+input[type="datetime"].is-disabled:focus,
+input[type="datetime"].is-disabled:active,
+input[type="datetime-local"][disabled]:focus,
+input[type="datetime-local"][disabled]:active,
+input[type="datetime-local"].is-disabled:focus,
+input[type="datetime-local"].is-disabled:active,
+input[type="date"][disabled]:focus,
+input[type="date"][disabled]:active,
+input[type="date"].is-disabled:focus,
+input[type="date"].is-disabled:active,
+input[type="month"][disabled]:focus,
+input[type="month"][disabled]:active,
+input[type="month"].is-disabled:focus,
+input[type="month"].is-disabled:active,
+input[type="time"][disabled]:focus,
+input[type="time"][disabled]:active,
+input[type="time"].is-disabled:focus,
+input[type="time"].is-disabled:active,
+input[type="week"][disabled]:focus,
+input[type="week"][disabled]:active,
+input[type="week"].is-disabled:focus,
+input[type="week"].is-disabled:active,
+input[type="number"][disabled]:focus,
+input[type="number"][disabled]:active,
+input[type="number"].is-disabled:focus,
+input[type="number"].is-disabled:active,
+input[type="email"][disabled]:focus,
+input[type="email"][disabled]:active,
+input[type="email"].is-disabled:focus,
+input[type="email"].is-disabled:active,
+input[type="url"][disabled]:focus,
+input[type="url"][disabled]:active,
+input[type="url"].is-disabled:focus,
+input[type="url"].is-disabled:active,
+input[type="search"][disabled]:focus,
+input[type="search"][disabled]:active,
+input[type="search"].is-disabled:focus,
+input[type="search"].is-disabled:active,
+input[type="tel"][disabled]:focus,
+input[type="tel"][disabled]:active,
+input[type="tel"].is-disabled:focus,
+input[type="tel"].is-disabled:active,
+input[type="color"][disabled]:focus,
+input[type="color"][disabled]:active,
+input[type="color"].is-disabled:focus,
+input[type="color"].is-disabled:active,
+select[disabled]:focus,
+select[disabled]:active,
+select.is-disabled:focus,
+select.is-disabled:active,
+textarea[disabled]:focus,
+textarea[disabled]:active,
+textarea.is-disabled:focus,
+textarea.is-disabled:active,
+.field[disabled]:focus,
+.field[disabled]:active,
+.field.is-disabled:focus,
+.field.is-disabled:active {
+  background-color: #d5edf8;
+}
+
+/* line 106, ../scss/modules/_forms.scss */
+input[type="password"] {
+  letter-spacing: 0.3em;
+}
+
+/* line 111, ../scss/modules/_forms.scss */
+textarea {
+  max-width: 100%;
+  min-height: 120px;
+  line-height: 1.5em;
+}
+
+/* line 118, ../scss/modules/_forms.scss */
+select {
+  -webkit-appearance: none;
+  /* 1 */
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA8AAAAHCAYAAADXhRcnAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyRpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoTWFjaW50b3NoKSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDpEOEZCMjYxMEYwNUUxMUUyOTI4REZGQTEzMzA2MDcyNiIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDpEOEZCMjYxMUYwNUUxMUUyOTI4REZGQTEzMzA2MDcyNiI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkQ4RkIyNjBFRjA1RTExRTI5MjhERkZBMTMzMDYwNzI2IiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOkQ4RkIyNjBGRjA1RTExRTI5MjhERkZBMTMzMDYwNzI2Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+Vxkp9gAAAI9JREFUeNpidHFxucHAwKAOxE+AmJmBMPgLxDJAfJMFSKwD4kqoAClgA+P///8ZXF1dPaCGcBKh6QcQB+3evXs7WDMIAA2QB1I7gFgDj0aQFz2BGh+AOEwwUaDAQyBlCMR7cGjcC5KHaQQBuM3IAOiKTiBVhiTUDdRUhq4Oq2aoAelAahIQ5wM1zsCmBiDAADhYMJXVZ9u9AAAAAElFTkSuQmCC);
+  background-repeat: no-repeat;
+  background-position: 97.5% center;
+}
+
+/* line 1, ../scss/modules/_header.scss */
+.header {
+  background-color: #6675ae;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#182458), to(#6675ae));
+  background-image: -webkit-linear-gradient(top, #182458, #6675ae);
+  background-image: -moz-linear-gradient(top, #182458, #6675ae);
+  background-image: -o-linear-gradient(top, #182458, #6675ae);
+  background-image: linear-gradient(to bottom, #182458, #6675ae);
+  -webkit-box-shadow: inset 0px -2px 10px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0px -2px 10px 0px rgba(0, 0, 0, 0.25);
+}
+/* line 6, ../scss/modules/_header.scss */
+.header #logo {
+  margin: 0.75em 0;
+}
+/* line 9, ../scss/modules/_header.scss */
+.header #logo a:link, .header #logo a:visited {
+  text-decoration: none;
+  color: #fff;
+  text-shadow: none;
+}
+/* line 14, ../scss/modules/_header.scss */
+.header #logo a:hover {
+  color: #f2f2f2;
+  font-size: 1.2em;
+  text-shadow: 1px 1px rgba(24, 36, 88, 0.5);
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+/* line 2, ../scss/modules/_search.scss */
+.ideasearch input {
+  height: auto;
+  max-width: 100% !important;
+  line-height: 2em;
+  border-radius: .5em;
+  font-size: 3em;
+}
+
+/* line 1, ../scss/modules/_homebox.scss */
+.homebox {
+  background-color: #6675ae;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#182458), to(#6675ae));
+  background-image: -webkit-linear-gradient(top, #182458, #6675ae);
+  background-image: -moz-linear-gradient(top, #182458, #6675ae);
+  background-image: -o-linear-gradient(top, #182458, #6675ae);
+  background-image: linear-gradient(to bottom, #182458, #6675ae);
+  padding: 2%;
+  padding-right: 5%;
+  color: #fff;
+}
+/* line 6, ../scss/modules/_homebox.scss */
+.homebox h2 {
+  color: #fff;
+  font-size: 4em;
+}
+/* line 10, ../scss/modules/_homebox.scss */
+.homebox hr {
+  width: 10%;
+  border-top: 5px solid #fff;
+  margin: 0 1% 0 0;
+}
+
+/* line 1, ../scss/modules/_toplist.scss */
+.totw {
+  width: 100%;
+  overflow: scroll;
+  margin-bottom: 5%;
+}
+/* line 6, ../scss/modules/_toplist.scss */
+.totw ol {
+  width: 250%;
+  color: #fff;
+  font-weight: bold;
+  list-style-type: decimal-leading-zero;
+  list-style-position: inside;
+  text-align: right;
+}
+/* line 14, ../scss/modules/_toplist.scss */
+.totw ol li {
+  position: relative;
+}
+/* line 18, ../scss/modules/_toplist.scss */
+.totw ol li::before {
+  position: absolute;
+  top: -3%;
+  right: 3.5%;
+  font-family: 'FontAwesome';
+  font-size: 3em;
+  color: #dacd56;
+  content: "";
+  z-index: -10;
+}
+/* line 33, ../scss/modules/_toplist.scss */
+.totw ol li header h2 {
+  text-align: left;
+}
+/* line 37, ../scss/modules/_toplist.scss */
+.totw ol li header img {
+  position: relative;
+  z-index: -20;
+  margin-top: -6.5%;
+  margin-bottom: -6.5%;
+  border-radius: 2%;
+}
+/* line 46, ../scss/modules/_toplist.scss */
+.totw ol li article {
+  font-weight: normal;
+  color: #5c6b80;
+  text-align: left;
+}
+/* line 52, ../scss/modules/_toplist.scss */
+.totw ol li footer {
+  color: #78c295;
+  font-weight: normal;
+}
+/* line 59, ../scss/modules/_toplist.scss */
+.totw ol li:nth-child(even)::before {
+  color: #78c295;
+}
+
+/* line 1, ../scss/modules/_social-network.scss */
+.container {
+  width: 49%;
+  text-align: right;
+  display: inline-block;
+}
+/* line 6, ../scss/modules/_social-network.scss */
+.container .btn {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  box-shadow: 0 5px 15px -5px #aaa;
+  margin: 1px;
+  border-radius: 30%;
+  overflow: hidden;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  color: #42d2ff;
+}
+/* line 20, ../scss/modules/_social-network.scss */
+.container .btn i {
+  font-family: 'FontAwesome';
+  position: relative;
+  z-index: 4;
+  font-size: 1.2em;
+  transition: 0.3s ease-in-out;
+}
+/* line 30, ../scss/modules/_social-network.scss */
+.container .fa-github {
+  color: #383838;
+}
+/* line 34, ../scss/modules/_social-network.scss */
+.container .gh::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: linear-gradient(#7e7e7e, #3a3a3a);
+  transform: rotate(45deg);
+  left: -110%;
+  top: 90%;
+}
+/* line 45, ../scss/modules/_social-network.scss */
+.container .fa-linkedin {
+  color: #0a66c2;
+}
+/* line 49, ../scss/modules/_social-network.scss */
+.container .in::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: linear-gradient(#2391ff, #0059b3);
+  transform: rotate(45deg);
+  left: -110%;
+  top: 90%;
+}
+/* line 60, ../scss/modules/_social-network.scss */
+.container .fa-instagram {
+  color: #e33d68;
+}
+/* line 64, ../scss/modules/_social-network.scss */
+.container .ig::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(circle at 60% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
+  transform: rotate(45deg);
+  left: -110%;
+  top: 90%;
+}
+/* line 75, ../scss/modules/_social-network.scss */
+.container .fa-twitter {
+  color: #00c6ff;
+}
+/* line 79, ../scss/modules/_social-network.scss */
+.container .tw::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: linear-gradient(#00c6ff, #0072ff);
+  transform: rotate(45deg);
+  left: -110%;
+  top: 90%;
+}
+/* line 90, ../scss/modules/_social-network.scss */
+.container .fa-youtube {
+  color: #ff0000;
+}
+/* line 94, ../scss/modules/_social-network.scss */
+.container .yt::before {
+  content: "";
+  position: absolute;
+  width: 120%;
+  height: 120%;
+  background: linear-gradient(#ff4949, #ff0000);
+  transform: rotate(45deg);
+  left: -110%;
+  top: 90%;
+}
+
+/* line 110, ../scss/modules/_social-network.scss */
+.container .btn:hover i {
+  color: #fff;
+  transform: scale(1.4);
+}
+
+/* line 115, ../scss/modules/_social-network.scss */
+.container .btn:hover::before {
+  animation: onHover 0.7s 1;
+  left: -10%;
+  top: -10%;
+}
+
+@keyframes onHover {
+  0% {
+    left: -110%;
+    top: 90%;
+  }
+  50% {
+    left: 10%;
+    top: -30%;
+  }
+  100% {
+    top: -10%;
+    left: -10%;
+  }
+}
+/* line 1, ../scss/modules/_header_add_new_sidebar.scss */
+.menu {
+  font-weight: 100;
+  background: rgba(234, 237, 242, 0.5);
+  width: 189px;
+  height: 100%;
+  padding-left: 80px;
+  position: fixed;
+  z-index: 100;
+  -webkit-box-shadow: -3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  box-shadow: -3px 0px 5px 0px rgba(0, 0, 0, 0.2);
+  right: -130px;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  color: #222;
+}
+/* line 15, ../scss/modules/_header_add_new_sidebar.scss */
+.menu:hover, .menu:focus {
+  transform: translate3d(-130px, 0, 0);
+  animation-timing-function: 1s ease-in;
+}
+/* line 20, ../scss/modules/_header_add_new_sidebar.scss */
+.menu .title {
+  top: 50%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transform: rotate(270deg);
+  left: -1px;
+  font-weight: 800;
+  font-size: 15px;
+}
+/* line 29, ../scss/modules/_header_add_new_sidebar.scss */
+.menu .nav {
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-weight: 100;
+}
+/* line 33, ../scss/modules/_header_add_new_sidebar.scss */
+.menu .nav li {
+  padding-bottom: 30px;
+  list-style-type: none;
+}
+/* line 37, ../scss/modules/_header_add_new_sidebar.scss */
+.menu .nav li a {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+}
+/* line 43, ../scss/modules/_header_add_new_sidebar.scss */
+.menu .nav li a:hover {
+  color: #aaa;
+}
+
+/* line 51, ../scss/modules/_header_add_new_sidebar.scss */
+.intro {
+  position: absolute;
+  top: 30%;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  font-size: 45px;
+  text-align: center;
+  font-style: italic;
+}
+
+/*********************
+BASE (MOBILE) SIZE
+This are the mobile styles. It's what people see on their phones. If
+you set a great foundation, you won't need to add too many styles in
+the other stylesheets. Remember, keep it light: Speed is Important.
+*********************/
+/******************************************************************
+Site Name: InduKo | idealize Ideenplattform
+Author: Benjamin Gierlich & Amela Grabus
+
+Stylesheet: Base Mobile Stylesheet
+
+Be light and don't over style since everything here will be
+loaded by mobile devices. You want to keep it as minimal as
+possible. This is called at the top of the main stylsheet
+and will be used across all viewports.
+
+******************************************************************/
+/*********************
+GENERAL STYLES
+*********************/
+/* line 18, ../scss/breakpoints/_base.scss */
+body {
+  font-family: "Metropolis", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 100%;
+  line-height: 1.5;
+  color: #5c6b80;
+  background-color: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/********************
+WORDPRESS BODY CLASSES
+style a page via class
+********************/
+/* for sites that are read right to left (i.e. hebrew) */
+/* home page */
+/* blog template page */
+/* archive page */
+/* date archive page */
+/* replace the number to the corresponding page number */
+/* search page */
+/* search result page */
+/* no results search page */
+/* individual paged search (i.e. body.search-paged-3) */
+/* 404 page */
+/* single post page */
+/* individual post page by id (i.e. body.postid-73) */
+/* individual paged single (i.e. body.single-paged-3) */
+/* attatchment page */
+/* individual attatchment page (i.e. body.attachmentid-763) */
+/* style mime type pages */
+/* author page */
+/* user nicename (i.e. body.author-samueladams) */
+/* paged author archives (i.e. body.author-paged-4) for page 4 */
+/* category page */
+/* individual category page (i.e. body.category-6) */
+/* replace the number to the corresponding page number */
+/* tag page */
+/* individual tag page (i.e. body.tag-news) */
+/* replace the number to the corresponding page number */
+/* custom page template page */
+/* individual page template (i.e. body.page-template-contact-php */
+/* replace the number to the corresponding page number */
+/* parent page template */
+/* child page template */
+/* replace the number to the corresponding page number */
+/* if user is logged in */
+/* paged items like search results or archives */
+/* individual paged (i.e. body.paged-3) */
+/*********************
+LAYOUT & GRID STYLES
+*********************/
+/* line 73, ../scss/breakpoints/_base.scss */
+.wrap {
+  width: 96%;
+  margin: 0 auto;
+}
+
+/*********************
+LINK STYLES
+*********************/
+/* line 82, ../scss/breakpoints/_base.scss */
+a, a:visited {
+  color: #182458;
+  /* on hover */
+  /* on click */
+  /* mobile tap color */
+}
+/* line 86, ../scss/breakpoints/_base.scss */
+a:hover, a:focus, a:visited:hover, a:visited:focus {
+  color: #6675ae;
+}
+/* line 96, ../scss/breakpoints/_base.scss */
+a:link, a:visited:link {
+  /*
+  this highlights links on iPhones/iPads.
+  so it basically works like the :hover selector
+  for mobile devices.
+  */
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+}
+
+/******************************************************************
+H1, H2, H3, H4, H5 STYLES
+******************************************************************/
+/* line 116, ../scss/breakpoints/_base.scss */
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+  text-rendering: optimizelegibility;
+  font-weight: 500;
+  color: #78c295;
+  /* removing text decoration from all headline links */
+}
+/* line 122, ../scss/breakpoints/_base.scss */
+h1 a, .h1 a, h2 a, .h2 a, h3 a, .h3 a, h4 a, .h4 a, h5 a, .h5 a {
+  text-decoration: none;
+}
+
+/* line 127, ../scss/breakpoints/_base.scss */
+h1, .h1 {
+  font-size: 4.5em;
+  line-height: 1.333em;
+  color: #eaedf2;
+  text-shadow: 3px 3px #78c295, -1px -1px 0 #dae0e8, 1px -1px 0 #dae0e8, -1px 1px 0 #dae0e8, 1px 1px 0 #dae0e8;
+}
+
+/* line 135, ../scss/breakpoints/_base.scss */
+h2, .h2 {
+  font-size: 1.75em;
+  line-height: 1.4em;
+  margin-bottom: 0.375em;
+}
+
+/* line 141, ../scss/breakpoints/_base.scss */
+h3, .h3 {
+  font-size: 1.125em;
+}
+
+/* line 145, ../scss/breakpoints/_base.scss */
+h4, .h4 {
+  font-size: 1.1em;
+  font-weight: 700;
+}
+
+/* line 150, ../scss/breakpoints/_base.scss */
+h5, .h5 {
+  font-size: 0.846em;
+  line-height: 2.09em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/*********************
+HEADER STYLES
+*********************/
+/*********************
+NAVIGATION STYLES
+*********************/
+/*
+all navs have a .nav class applied via
+the wp_menu function; this is so we can
+easily write one group of styles for
+the navs on the site so our css is cleaner
+and more scalable.
+*/
+/* line 175, ../scss/breakpoints/_base.scss */
+.nav {
+  border-bottom: 0;
+  margin: 0;
+  /* end .menu li */
+  /* highlight current page */
+  /* end current highlighters */
+}
+/* line 179, ../scss/breakpoints/_base.scss */
+.nav li {
+  /*
+  so you really have to rethink your dropdowns for mobile.
+  you don't want to have it expand too much because the
+  screen is so small. How you manage your menu should
+  depend on the project. Here's some great info on it:
+  http://www.alistapart.com/articles/organizing-mobile/
+  */
+}
+/* line 181, ../scss/breakpoints/_base.scss */
+.nav li a {
+  display: block;
+  color: #fff;
+  text-decoration: none;
+  padding: 0.75em;
+  /*
+  remember this is for mobile ONLY, so there's no need
+  to even declare hover styles here, you can do it in
+  the style.scss file where it's relevant. We want to
+  keep this file as small as possible!
+  */
+}
+/* line 214, ../scss/breakpoints/_base.scss */
+.nav li ul.sub-menu li a,
+.nav li ul.children li a {
+  padding-left: 30px;
+}
+
+/* end .nav */
+/*********************
+POSTS & CONTENT STYLES
+*********************/
+/* line 250, ../scss/breakpoints/_base.scss */
+#content {
+  margin-top: 1.5em;
+}
+
+/* line 254, ../scss/breakpoints/_base.scss */
+.hentry {
+  background-color: #fff;
+  border-radius: 3px;
+  margin-bottom: 1.5em;
+  border: 1px solid #ccc;
+}
+/* line 260, ../scss/breakpoints/_base.scss */
+.hentry header {
+  border-bottom: 1px solid #f8f9fa;
+  padding: 1.5em;
+}
+/* line 265, ../scss/breakpoints/_base.scss */
+.hentry footer {
+  padding: 1.5em;
+  border-top: 1px solid #f8f9fa;
+}
+/* line 269, ../scss/breakpoints/_base.scss */
+.hentry footer p {
+  margin: 0;
+}
+
+/* end .hentry */
+/* line 276, ../scss/breakpoints/_base.scss */
+.single-title,
+.page-title,
+.entry-title {
+  margin: 0;
+}
+
+/* want to style individual post classes? Booya! */
+/* post by id (i.e. post-3) */
+/* general post style */
+/* general article on a page style */
+/* general style on an attatchment */
+/* sticky post style */
+/* hentry class */
+/* style by category (i.e. category-videos) */
+/* style by tag (i.e. tag-news) */
+/* post meta */
+/* line 301, ../scss/breakpoints/_base.scss */
+.byline {
+  color: #9fa6b4;
+  font-style: italic;
+  margin: 0;
+}
+
+/* entry content */
+/* line 310, ../scss/breakpoints/_base.scss */
+.entry-content {
+  padding: 1.5em 1.5em 0;
+  /*
+  image alignment on a screen this size may be
+  a bit difficult. It's set to start aligning
+  and floating images at the next breakpoint,
+  but it's up to you. Feel free to change it up.
+  */
+}
+/* line 313, ../scss/breakpoints/_base.scss */
+.entry-content p {
+  margin: 0 0 1.5em;
+}
+/* line 338, ../scss/breakpoints/_base.scss */
+.entry-content table {
+  width: 100%;
+  border: 1px solid #eaedf2;
+  margin-bottom: 1.5em;
+}
+/* line 343, ../scss/breakpoints/_base.scss */
+.entry-content table caption {
+  margin: 0 0 7px;
+  font-size: 0.75em;
+  color: #9fa6b4;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* line 352, ../scss/breakpoints/_base.scss */
+.entry-content tr {
+  border-bottom: 1px solid #eaedf2;
+}
+/* line 355, ../scss/breakpoints/_base.scss */
+.entry-content tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+/* line 360, ../scss/breakpoints/_base.scss */
+.entry-content td {
+  padding: 7px;
+  border-right: 1px solid #eaedf2;
+}
+/* line 364, ../scss/breakpoints/_base.scss */
+.entry-content td:last-child {
+  border-right: 0;
+}
+/* line 369, ../scss/breakpoints/_base.scss */
+.entry-content th {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #eaedf2;
+  border-right: 1px solid #eaedf2;
+}
+/* line 374, ../scss/breakpoints/_base.scss */
+.entry-content th:last-child {
+  border-right: 0;
+}
+/* line 379, ../scss/breakpoints/_base.scss */
+.entry-content blockquote {
+  margin: 0 0 1.5em 0.75em;
+  padding: 0 0 0 0.75em;
+  border-left: 3px solid #2980b9;
+  font-style: italic;
+  color: #9fa6b4;
+}
+/* line 394, ../scss/breakpoints/_base.scss */
+.entry-content dd {
+  margin-left: 0;
+  font-size: 0.9em;
+  color: #787878;
+  margin-bottom: 1.5em;
+}
+/* line 401, ../scss/breakpoints/_base.scss */
+.entry-content img {
+  margin: 0 0 1.5em 0;
+  max-width: 100%;
+  height: auto;
+}
+/* line 417, ../scss/breakpoints/_base.scss */
+.entry-content .size-auto,
+.entry-content .size-full,
+.entry-content .size-large,
+.entry-content .size-medium,
+.entry-content .size-thumbnail {
+  max-width: 100%;
+  height: auto;
+}
+/* line 426, ../scss/breakpoints/_base.scss */
+.entry-content pre {
+  background: #323944;
+  color: #f8f9fa;
+  font-size: 0.9em;
+  padding: 1.5em;
+  margin: 0 0 1.5em;
+  border-radius: 3px;
+}
+
+/* end .entry-content */
+/* line 437, ../scss/breakpoints/_base.scss */
+.wp-caption {
+  max-width: 100%;
+  background: #eee;
+  padding: 5px;
+  /* images inside wp-caption */
+}
+/* line 443, ../scss/breakpoints/_base.scss */
+.wp-caption img {
+  max-width: 100%;
+  margin-bottom: 0;
+  width: 100%;
+}
+/* line 449, ../scss/breakpoints/_base.scss */
+.wp-caption p.wp-caption-text {
+  font-size: 0.85em;
+  margin: 4px 0 7px;
+  text-align: center;
+}
+
+/* end .wp-caption */
+/* image gallery styles */
+/* end .gallery */
+/* gallery caption styles */
+/* line 483, ../scss/breakpoints/_base.scss */
+.tags {
+  margin: 0;
+}
+
+/******************************************************************
+PAGE NAVI STYLES
+******************************************************************/
+/* line 491, ../scss/breakpoints/_base.scss */
+.pagination,
+.wp-prev-next {
+  margin: 1.5em 0;
+}
+
+/* line 495, ../scss/breakpoints/_base.scss */
+.pagination {
+  text-align: center;
+}
+/* line 498, ../scss/breakpoints/_base.scss */
+.pagination ul {
+  display: inline-block;
+  background-color: #fff;
+  white-space: nowrap;
+  padding: 0;
+  clear: both;
+  border-radius: 3px;
+}
+/* line 507, ../scss/breakpoints/_base.scss */
+.pagination li {
+  padding: 0;
+  margin: 0;
+  float: left;
+  display: inline;
+  overflow: hidden;
+  border-right: 1px solid #eaedf2;
+}
+/* line 516, ../scss/breakpoints/_base.scss */
+.pagination a, .pagination span {
+  margin: 0;
+  text-decoration: none;
+  padding: 0;
+  line-height: 1em;
+  font-size: 1em;
+  font-weight: normal;
+  padding: 0.75em;
+  min-width: 1em;
+  display: block;
+  color: #2980b9;
+}
+/* line 528, ../scss/breakpoints/_base.scss */
+.pagination a:hover, .pagination a:focus, .pagination span:hover, .pagination span:focus {
+  background-color: #2980b9;
+  color: #fff;
+}
+/* line 534, ../scss/breakpoints/_base.scss */
+.pagination .current {
+  cursor: default;
+  color: #5c6b80;
+}
+/* line 538, ../scss/breakpoints/_base.scss */
+.pagination .current:hover, .pagination .current:focus {
+  background-color: #fff;
+  color: #5c6b80;
+}
+
+/* end .bones_page_navi */
+/* fallback previous & next links */
+/* line 551, ../scss/breakpoints/_base.scss */
+.wp-prev-next .prev-link {
+  float: left;
+}
+/* line 555, ../scss/breakpoints/_base.scss */
+.wp-prev-next .next-link {
+  float: right;
+}
+
+/* end .wp-prev-next */
+/******************************************************************
+COMMENT STYLES
+******************************************************************/
+/* h3 comment title */
+/* line 566, ../scss/breakpoints/_base.scss */
+#comments-title {
+  padding: 0.75em;
+  margin: 0;
+  border-top: 1px solid #f8f9fa;
+  /* number of comments span */
+}
+
+/* line 586, ../scss/breakpoints/_base.scss */
+.commentlist {
+  margin: 0;
+  list-style-type: none;
+}
+
+/* line 591, ../scss/breakpoints/_base.scss */
+.comment {
+  position: relative;
+  clear: both;
+  overflow: hidden;
+  padding: 1.5em;
+  border-bottom: 1px solid #f8f9fa;
+  /* vcard */
+  /* end .commentlist .vcard */
+  /* end children */
+  /* general comment classes */
+}
+/* line 598, ../scss/breakpoints/_base.scss */
+.comment .comment-author {
+  padding: 7px;
+  border: 0;
+}
+/* line 604, ../scss/breakpoints/_base.scss */
+.comment .vcard {
+  margin-left: 50px;
+}
+/* line 607, ../scss/breakpoints/_base.scss */
+.comment .vcard cite.fn {
+  font-weight: 700;
+  font-style: normal;
+}
+/* line 615, ../scss/breakpoints/_base.scss */
+.comment .vcard time {
+  display: block;
+  font-size: 0.9em;
+  font-style: italic;
+}
+/* line 620, ../scss/breakpoints/_base.scss */
+.comment .vcard time a {
+  color: #9fa6b4;
+  text-decoration: none;
+}
+/* line 624, ../scss/breakpoints/_base.scss */
+.comment .vcard time a:hover {
+  text-decoration: underline;
+}
+/* line 634, ../scss/breakpoints/_base.scss */
+.comment .vcard .avatar {
+  position: absolute;
+  left: 16px;
+  border-radius: 50%;
+}
+/* line 642, ../scss/breakpoints/_base.scss */
+.comment:last-child {
+  margin-bottom: 0;
+}
+/* line 646, ../scss/breakpoints/_base.scss */
+.comment .children {
+  margin: 0;
+  /* variations */
+  /* change number for different depth */
+}
+/* line 664, ../scss/breakpoints/_base.scss */
+.comment[class*=depth-] {
+  margin-top: 1.1em;
+}
+/* line 668, ../scss/breakpoints/_base.scss */
+.comment.depth-1 {
+  margin-left: 0;
+  margin-top: 0;
+}
+/* line 673, ../scss/breakpoints/_base.scss */
+.comment:not(.depth-1) {
+  margin-top: 0;
+  margin-left: 7px;
+  padding: 7px;
+}
+/* line 686, ../scss/breakpoints/_base.scss */
+.comment.odd {
+  background-color: #fff;
+}
+/* line 689, ../scss/breakpoints/_base.scss */
+.comment.even {
+  background: #f8f9fa;
+}
+
+/* comment meta */
+/* comment content */
+/* line 723, ../scss/breakpoints/_base.scss */
+.comment_content p {
+  margin: 0.7335em 0 1.5em;
+  font-size: 1em;
+  line-height: 1.5em;
+}
+
+/* end .commentlist .comment_content */
+/* comment reply link */
+/* line 732, ../scss/breakpoints/_base.scss */
+.comment-reply-link {
+  font-size: 0.9em;
+  float: right;
+}
+
+/* end .commentlist .comment-reply-link */
+/* edit comment link */
+/* line 744, ../scss/breakpoints/_base.scss */
+.comment-edit-link {
+  font-style: italic;
+  margin: 0 7px;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+/******************************************************************
+COMMENT FORM STYLES
+******************************************************************/
+/* line 757, ../scss/breakpoints/_base.scss */
+.comment-respond {
+  padding: 1.5em;
+  border-top: 1px solid #f8f9fa;
+}
+
+/* line 763, ../scss/breakpoints/_base.scss */
+#reply-title {
+  margin: 0;
+}
+
+/* line 767, ../scss/breakpoints/_base.scss */
+.logged-in-as {
+  color: #9fa6b4;
+  font-style: italic;
+  margin: 0;
+}
+/* line 772, ../scss/breakpoints/_base.scss */
+.logged-in-as a {
+  color: #5c6b80;
+}
+
+/* line 777, ../scss/breakpoints/_base.scss */
+.comment-form-comment {
+  margin: 1.5em 0 0.75em;
+}
+
+/* line 781, ../scss/breakpoints/_base.scss */
+.form-allowed-tags {
+  padding: 1.5em;
+  background-color: #f8f9fa;
+  font-size: 0.9em;
+}
+
+/* comment submit button */
+/* line 788, ../scss/breakpoints/_base.scss */
+#submit {
+  float: right;
+  font-size: 1em;
+}
+
+/* comment form title */
+/* line 795, ../scss/breakpoints/_base.scss */
+#comment-form-title {
+  margin: 0 0 1.1em;
+}
+
+/* cancel comment reply link */
+/* logged in comments */
+/* allowed tags */
+/* line 808, ../scss/breakpoints/_base.scss */
+#allowed_tags {
+  margin: 1.5em 10px 0.7335em 0;
+}
+
+/* no comments */
+/* line 813, ../scss/breakpoints/_base.scss */
+.nocomments {
+  margin: 0 20px 1.1em;
+}
+
+/*********************
+SIDEBARS & ASIDES
+*********************/
+/* line 829, ../scss/breakpoints/_base.scss */
+.widget ul li {
+  /* deep nesting */
+}
+
+/* line 846, ../scss/breakpoints/_base.scss */
+.no-widgets {
+  background-color: #fff;
+  padding: 1.5em;
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  margin-bottom: 1.5em;
+}
+
+/*********************
+FOOTER STYLES
+*********************/
+/* line 859, ../scss/breakpoints/_base.scss */
+.footer {
+  clear: both;
+  background-color: #323944;
+  color: #f8f9fa;
+}
+
+/*
+if you checked out the link above:
+http://www.alistapart.com/articles/organizing-mobile/
+you'll want to style the footer nav
+a bit more in-depth. Remember to keep
+it simple because you'll have to
+override these styles for the desktop
+view.
+*/
+/* end .footer-links */
+/*********************
+LARGER MOBILE DEVICES
+This is for devices like the Galaxy Note or something that's
+larger than an iPhone but smaller than a tablet. Let's call them
+tweeners.
+*********************/
+@media only screen and (min-width: 481px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: 481px and Up Stylesheet
+  
+  This stylesheet is loaded for larger devices. It's set to
+  481px because at 480px it would load on a landscaped iPhone.
+  This isn't ideal because then you would be loading all those
+  extra styles on that same mobile connection.
+  
+  A word of warning. This size COULD be a larger mobile device,
+  so you still want to keep it pretty light and simply expand
+  upon your base.scss styles.
+  
+  ******************************************************************/
+  /*
+  IMPORTANT NOTE ABOUT SASS 3.3 & UP
+  You can't use @extend within media queries
+  anymore, so just be aware that if you drop
+  them in here, they won't work.
+  */
+  /*********************
+  NAVIGATION STYLES
+  *********************/
+  /* .menu is clearfixed inside mixins.scss */
+  /* line 33, ../scss/breakpoints/_481up.scss */
+  .menu {
+    /* end .menu ul */
+  }
+  /* line 34, ../scss/breakpoints/_481up.scss */
+  .menu ul {
+    /* end .menu ul li */
+    /* highlight current page */
+    /* end current highlighters */
+  }
+  /* line 35, ../scss/breakpoints/_481up.scss */
+  .menu ul li {
+    /*
+    plan your menus and drop-downs wisely.
+    */
+  }
+  /* line 36, ../scss/breakpoints/_481up.scss */
+  .menu ul li a {
+    /*
+    you can use hover styles here even though this size
+    has the possibility of being a mobile device.
+    */
+  }
+
+  /* end .menu */
+  /*********************
+  POSTS & CONTENT STYLES
+  *********************/
+  /* entry content */
+  /* line 81, ../scss/breakpoints/_481up.scss */
+  .entry-content {
+    /* at this larger size, we can start to align images */
+  }
+  /* line 85, ../scss/breakpoints/_481up.scss */
+  .entry-content .alignleft, .entry-content img.alignleft {
+    margin-right: 1.5em;
+    display: inline;
+    float: left;
+  }
+  /* line 90, ../scss/breakpoints/_481up.scss */
+  .entry-content .alignright, .entry-content img.alignright {
+    margin-left: 1.5em;
+    display: inline;
+    float: right;
+  }
+  /* line 95, ../scss/breakpoints/_481up.scss */
+  .entry-content .aligncenter, .entry-content img.aligncenter {
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+    clear: both;
+  }
+
+  /* end .entry-content */
+  /*********************
+  FOOTER STYLES
+  *********************/
+  /*
+  check your menus here. do they look good?
+  do they need tweaking?
+  */
+  /* end .footer-links */
+}
+/*********************
+TABLET & SMALLER LAPTOPS
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 768px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Tablet & Small Desktop Stylesheet
+  
+  Here's where you can start getting into the good stuff.
+  This size will work on iPads, other tablets, and desktops.
+  So you can start working with more styles, background images,
+  and other resources. You'll also notice the grid starts to
+  come into play. Have fun!
+  
+  ******************************************************************/
+  /*********************
+  GENERAL STYLES
+  *********************/
+  /*********************
+  LAYOUT & GRID STYLES
+  *********************/
+  /* line 26, ../scss/breakpoints/_768up.scss */
+  .wrap {
+    width: 760px;
+  }
+
+  /*********************
+  HEADER STYLES
+  *********************/
+  /*********************
+  NAVIGATION STYLES
+  *********************/
+  /* line 42, ../scss/breakpoints/_768up.scss */
+  .nav {
+    border: 0;
+    /* end .menu ul li */
+    /* highlight current page */
+    /* end current highlighters */
+  }
+  /* line 44, ../scss/breakpoints/_768up.scss */
+  .nav ul {
+    background: #323944;
+    margin-top: 0;
+  }
+  /* line 48, ../scss/breakpoints/_768up.scss */
+  .nav li {
+    float: left;
+    position: relative;
+    /*
+    plan your menus and drop-downs wisely.
+    */
+    /* showing sub-menus */
+  }
+  /* line 52, ../scss/breakpoints/_768up.scss */
+  .nav li a {
+    border-bottom: 0;
+    /*
+    you can use hover styles here even though this size
+    has the possibility of being a mobile device.
+    */
+  }
+  /* line 59, ../scss/breakpoints/_768up.scss */
+  .nav li a:hover, .nav li a:focus {
+    color: #fff;
+    text-decoration: underline;
+  }
+  /* line 71, ../scss/breakpoints/_768up.scss */
+  .nav li ul.sub-menu,
+  .nav li ul.children {
+    margin-top: 0;
+    border: 1px solid #ccc;
+    border-top: 0;
+    position: absolute;
+    visibility: hidden;
+    z-index: 8999;
+    /* highlight sub-menu current page */
+  }
+  /* line 80, ../scss/breakpoints/_768up.scss */
+  .nav li ul.sub-menu li,
+  .nav li ul.children li {
+    /*
+    if you need to go deeper, go nuts
+    just remember deeper menus suck
+    for usability. k, bai.
+    */
+  }
+  /* line 82, ../scss/breakpoints/_768up.scss */
+  .nav li ul.sub-menu li a,
+  .nav li ul.children li a {
+    padding-left: 10px;
+    border-right: 0;
+    display: block;
+    width: 180px;
+    border-bottom: 1px solid #ccc;
+  }
+  /* line 99, ../scss/breakpoints/_768up.scss */
+  .nav li ul.sub-menu li:last-child a,
+  .nav li ul.children li:last-child a {
+    border-bottom: 0;
+  }
+  /* line 109, ../scss/breakpoints/_768up.scss */
+  .nav li ul.sub-menu li ul,
+  .nav li ul.children li ul {
+    top: 0;
+    left: 100%;
+  }
+  /* line 124, ../scss/breakpoints/_768up.scss */
+  .nav li:hover > ul {
+    top: auto;
+    visibility: visible;
+  }
+
+  /* end .nav */
+  /*********************
+  SIDEBARS & ASIDES
+  *********************/
+  /* line 144, ../scss/breakpoints/_768up.scss */
+  .sidebar {
+    margin-top: 2.2em;
+  }
+
+  /* line 148, ../scss/breakpoints/_768up.scss */
+  .widgettitle {
+    border-bottom: 2px solid #444;
+    margin-bottom: 0.75em;
+  }
+
+  /* line 153, ../scss/breakpoints/_768up.scss */
+  .widget {
+    padding: 0 10px;
+    margin: 2.2em 0;
+  }
+  /* line 158, ../scss/breakpoints/_768up.scss */
+  .widget ul li {
+    margin-bottom: 0.75em;
+    /* deep nesting */
+  }
+  /* line 166, ../scss/breakpoints/_768up.scss */
+  .widget ul li ul {
+    margin-top: 0.75em;
+    padding-left: 1em;
+  }
+
+  /* links widget */
+  /* meta widget */
+  /* pages widget */
+  /* recent-posts widget */
+  /* archives widget */
+  /* tag-cloud widget */
+  /* calendar widget */
+  /* category widget */
+  /* recent-comments widget */
+  /* search widget */
+  /* text widget */
+  /*********************
+  FOOTER STYLES
+  *********************/
+  /*
+  you'll probably need to do quite a bit
+  of overriding here if you styled them for
+  mobile. Make sure to double check these!
+  */
+  /* line 274, ../scss/breakpoints/_768up.scss */
+  .footer-links ul li {
+    /*
+    be careful with the depth of your menus.
+    it's very rare to have multi-depth menus in
+    the footer.
+    */
+  }
+
+  /* end .footer-links */
+}
+/*********************
+DESKTOP
+This is the average viewing window. So Desktops, Laptops, and
+in general anyone not viewing on a mobile device. Here's where
+you can add resource intensive styles.
+*********************/
+@media only screen and (min-width: 1030px) {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Desktop Stylsheet
+  
+  This is the desktop size. It's larger than an iPad so it will only
+  be seen on the Desktop.
+  
+  ******************************************************************/
+  /* line 12, ../scss/breakpoints/_1030up.scss */
+  .wrap {
+    width: 1500px;
+  }
+}
+/*********************
+LARGE VIEWING SIZE
+This is for the larger monitors and possibly full screen viewers.
+*********************/
+@media only screen and (min-width: 1240px) {
+  /******************************************************************
+  Site Name: 
+  Author: 
+  
+  Stylesheet: Super Large Monitor Stylesheet
+  
+  You can add some advanced styles here if you like. This kicks in
+  on larger screens.
+  
+  ******************************************************************/
+}
+/*********************
+RETINA (2x RESOLUTION DEVICES)
+This applies to the retina iPhone (4s) and iPad (2,3) along with
+other displays with a 2x resolution. You can also create a media
+query for retina AND a certain size if you want. Go Nuts.
+*********************/
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
+  /******************************************************************
+  Site Name: 
+  Author: 
+  
+  Stylesheet: Retina Screens & Devices Stylesheet
+  
+  When handling retina screens you need to make adjustments, especially
+  if you're not using font icons. Here you can add them in one neat
+  place.
+  
+  ******************************************************************/
+  /* 
+  
+  EXAMPLE 
+  Let's say you have an image and you need to make sure it looks ok
+  on retina screens. Let's say we have an icon which dimension are
+  24px x 24px. In your regular stylesheets, it would look something
+  like this:
+  
+  .icon {
+  	width: 24px;
+  	height: 24px;
+  	background: url(img/test.png) no-repeat;
+  }
+  
+  For retina screens, we have to make some adjustments, so that image
+  doesn't look blurry. So, taking into account the image above and the
+  dimensions, this is what we would put in our retina stylesheet:
+  
+  .icon {
+  	background: url(img/test@2x.png) no-repeat;
+  	background-size: 24px 24px;
+  }
+  
+  So, you would create the same icon, but at double the resolution, meaning 
+  it would be 48px x 48px. You'd name it the same, but with a @2x at the end
+  (this is pretty standard practice). Set the background image so it matches
+  the original dimensions and you are good to go. 
+  
+  */
+}
+/*********************
+PRINT STYLESHEET
+Feel free to customize this. Remember to add things that won't make
+sense to print at the bottom. Things like nav, ads, and forms should
+be set to display none.
+*********************/
+@media print {
+  /******************************************************************
+  Site Name:
+  Author:
+  
+  Stylesheet: Print Stylesheet
+  
+  This is the print stylesheet. There's probably not a lot
+  of reasons to edit this stylesheet. If you want to
+  though, go for it.
+  
+  ******************************************************************/
+  /* line 13, ../scss/partials/_print.scss */
+  * {
+    background: transparent !important;
+    color: black !important;
+    text-shadow: none !important;
+    filter: none !important;
+    -ms-filter: none !important;
+  }
+
+  /* line 21, ../scss/partials/_print.scss */
+  a, a:visited {
+    color: #444 !important;
+    text-decoration: underline;
+  }
+  /* line 26, ../scss/partials/_print.scss */
+  a:after, a:visited:after {
+    content: " (" attr(href) ")";
+  }
+  /* line 31, ../scss/partials/_print.scss */
+  a abbr[title]:after, a:visited abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  /* line 36, ../scss/partials/_print.scss */
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  /* line 42, ../scss/partials/_print.scss */
+  pre, blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /* line 47, ../scss/partials/_print.scss */
+  thead {
+    display: table-header-group;
+  }
+
+  /* line 51, ../scss/partials/_print.scss */
+  tr, img {
+    page-break-inside: avoid;
+  }
+
+  /* line 55, ../scss/partials/_print.scss */
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+  }
+  /* line 63, ../scss/partials/_print.scss */
+  p, h2, h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* line 68, ../scss/partials/_print.scss */
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  /* line 74, ../scss/partials/_print.scss */
+  .sidebar,
+  .page-navigation,
+  .wp-prev-next,
+  .respond-form,
+  nav {
+    display: none;
+  }
+}

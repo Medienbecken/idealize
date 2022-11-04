@@ -1,0 +1,20 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "frontend-admin/text-field",
+	"title": "Text Field",
+	"description": "Display a text field.",
+	"category": "frontend-admin",
+	"textdomain": "frontend-admin",
+	"attributes": {
+        "label": {
+            "type": "string",
+			"default": "Text"
+        },
+		"default_value": {
+            "type": "string",
+			"default": ""
+        }
+    },
+	"editorScript": "file:../../../blocks/text-field/index.js"
+}

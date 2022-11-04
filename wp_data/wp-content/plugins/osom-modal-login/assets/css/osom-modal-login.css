@@ -1,0 +1,118 @@
+/* Modal box */
+
+.login-modal-box {
+	display: none;
+	position: fixed;
+	z-index: 9999;
+	padding: 100px 20px 0;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+	background-color: black;
+	background-color: rgba(0,0,0,0.4);
+}
+
+.login-modal-box.visible {
+	display: block;
+}
+
+.login-modal-box .modal-content {
+	background-color: white;
+	margin: auto;
+	padding: 30px 30px 10px;
+	max-width: 500px;
+	font-family: sans-serif;
+	position: relative;
+}
+
+@media only screen and (max-width: 600px) {
+
+	.login-modal-box .modal-content {
+		max-width: 98%;
+		padding: 40px 40px 10px;
+		width: 98%;
+	}
+}
+
+
+.login-modal-box .login-modal-close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 20px;
+	height: 20px; 
+}
+
+.login-modal-box .login-modal-close:hover,
+.login-modal-box .login-modal-close:focus {
+	cursor: pointer;
+	color: black;
+}
+
+/* Login form */
+
+.login-modal-box form .login-username label,
+.login-modal-box form .login-password label {
+	display: block;
+	font-size: 12px;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+	margin-bottom: 5px;
+}
+
+.login-modal-box form .login-remember label {
+	font-size: 14px;
+}
+
+.login-modal-box form .login-username input,
+.login-modal-box form .login-password input,
+.login-modal-box form .login-submit input {
+	width: 100%;
+}
+
+.login-modal-box .login-forgot, .login-modal-box a {
+	font-size: 14px;
+	text-align: center;
+	text-decoration: underline;	
+	display: block;
+}
+
+.login-error {
+	background-color: #FFEBE8;
+    border: 1px solid #C00;
+    font-size: 13px;
+    margin-bottom: 37px;
+    padding: 8px 16px;
+}
+
+.osom-form {
+	float: left; 
+}
+
+.logo-osom {
+	float: right; 
+	margin-right: 40px;
+}
+
+.osom-info {
+	display: block; 
+	float: left; 
+	background-color: #fff;
+	padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.osom-info p {
+    line-height: 24px;
+}
+.osom-info p:before{
+	background-size: contain;
+	background: url(../img/info.png);
+	content: ''; 
+	float: left;
+	height: 24px;
+	margin-right: 10px;
+    width: 6px;
+}

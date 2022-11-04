@@ -1,0 +1,15 @@
+.homebox {
+    @include css-gradient($induko-blue,$induko-light-blue);
+    padding:2%;
+    padding-right: 5%;
+    color:$white;
+    h2 {
+        color: $white;
+        font-size: 4em;
+    }
+    hr {
+        width: 10%;
+        border-top: 5px solid $white;
+        margin: 0 1% 0 0;
+    }
+}

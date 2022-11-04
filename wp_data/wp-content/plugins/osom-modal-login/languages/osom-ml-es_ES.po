@@ -1,0 +1,139 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Osom Modal Login\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/osom-modal-login\n"
+"POT-Creation-Date: 2020-10-30T11:27:52+00:00\n"
+"PO-Revision-Date: 2020-10-30 12:50+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_ES\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: osom-modal-login.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
+
+#. Plugin Name of the plugin
+#: inc/osom-admin.php:39 inc/osom-admin.php:40 inc/osom-admin.php:59
+msgid "Osom Modal Login"
+msgstr "Osom Modal Login"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://osompress.com"
+msgstr "https://osompress.com"
+
+#. Description of the plugin
+#, fuzzy
+#| msgid ""
+#| "Osom Modal Login lets you easily create a modal box displaying the "
+#| "WordPress login form. It automatically adds a menu item named \"Login\" "
+#| "at the end of the \t\t\t\t\t  selected menu which will launch the login "
+#| "modal box one you click on it."
+msgid ""
+"Osom Modal Login lets you easily create a modal box displaying the WordPress "
+"login form. It automatically adds a menu item named \"Login\" at the end of "
+"the selected menu which will launch the login modal box one you click on it."
+msgstr ""
+"Osom Modal Login te permite crear fácilmente una caja emergente que muestra "
+"el formulario de acceso de WordPress. Añade automáticamente un elemento "
+"llamado «Login» al final del menú seleccionado que lanzará la caja emergente "
+"de inicio de sesión una vez que hagas clic en ella."
+
+#. Author of the plugin
+msgid "OsomPress"
+msgstr "OsomPress"
+
+#: inc/osom-admin.php:73
+msgid ""
+"You can also use the login modal window anywhere on the website using the "
+"shortcode [osom-login] Custom text [/osom-login]"
+msgstr ""
+"También puedes utilizar la ventana emergente de acceso en cualquier lugar de "
+"la página web utilizando el shortcode [osom-login] Texto personalizado [/"
+"osom-login]"
+
+#: inc/osom-admin.php:93
+msgid "Display Remember option"
+msgstr "Mostrar la opción de Recuérdame"
+
+#: inc/osom-admin.php:106
+msgid "Display Lost Password option"
+msgstr "Mostrar la opción de contraseña perdida"
+
+#: inc/osom-admin.php:119
+msgid "Header title"
+msgstr "Titulo de encabezado"
+
+#: inc/osom-admin.php:128
+msgid "Title text displayed before the login form (you can leave it empty)"
+msgstr ""
+"Título mostrado antes del formulario de inicio de sesión (puedes dejarlo en "
+"blanco)"
+
+#: inc/osom-admin.php:136
+msgid "Select a menu to add login item"
+msgstr "Seleccione un menú para añadir el elemento de inicio de sesión"
+
+#: inc/osom-admin.php:150
+msgid "Login URL redirection"
+msgstr "URL de la redirección al inicio de sesión"
+
+#: inc/osom-admin.php:158
+msgid "URL after login"
+msgstr "URL después del inicio de sesión"
+
+#: inc/osom-admin.php:164
+msgid "Logout URL redirection"
+msgstr "URL de la redirección al cerrar la sesión"
+
+#: inc/osom-admin.php:172
+msgid "URL after logout"
+msgstr "URL después de cerrar la sesión"
+
+#: inc/osom-admin.php:194
+msgid "The plugin creates a Login/Logout item at the end of the selected menu."
+msgstr ""
+"El plugin crea un elemento Login/Logout al final del menú seleccionado."
+
+#: inc/osom-admin.php:195
+msgid "On this page you can set the options for the modal login screen."
+msgstr ""
+"En esta página puedes configurar las opciones de la caja de acceso emergente."
+
+#: osom-modal-login.php:119
+msgid ""
+"Login failed: You have entered an incorrect Username or Password, please try "
+"again."
+msgstr ""
+"El acceso falló: Ha introducido un nombre de usuario o contraseña "
+"incorrectos, por favor inténtelo de nuevo."
+
+#: osom-modal-login.php:190
+msgid "Log out"
+msgstr "Cerrar sesión"
+
+#: osom-modal-login.php:194 osom-modal-login.php:198
+msgid "Login"
+msgstr "Iniciar sesión"
+
+#~ msgid "Username or Email Address"
+#~ msgstr "Nombre de usuario o correo electrónico"
+
+#~ msgid "Password"
+#~ msgstr "Contraseña"
+
+#~ msgid "Log In"
+#~ msgstr "Iniciar sesión"
+
+#~ msgid "Lost your password?"
+#~ msgstr "¿Perdiste tu contraseña?"

@@ -1,0 +1,12 @@
+{
+    "name": "squibblefish/bones-theme",
+    "description": "Bare theme for Wordpress",
+    "type": "wordpress-theme",
+    "authors": [
+        {
+            "name": "sfisherGizmo",
+            "email": "stephen@squibble-fish.com"
+        }
+    ],
+    "require": {}
+}

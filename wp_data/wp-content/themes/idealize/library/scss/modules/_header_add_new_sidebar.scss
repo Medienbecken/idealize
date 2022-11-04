@@ -1,0 +1,60 @@
+.menu {
+    font-weight: 100;
+    background:rgba($color: $gray, $alpha: 0.5);
+    width: 189px;
+    height: 100%;
+    padding-left: 80px;
+    position: fixed;
+    z-index: 100;
+    -webkit-box-shadow: -3px 0px 5px 0px rgba(0,0,0,0.2);
+    box-shadow: -3px 0px 5px 0px rgba(0,0,0,0.2);
+    right: -130px;
+    @include all-transition(0.3s);
+    color: #222;
+
+    &:hover, &:focus {
+        transform: translate3d(-130px, 0, 0);
+        animation-timing-function: 1s ease-in;
+    }
+
+    .title {
+        top: 50%;
+        @include vertical-align(absolute);
+        transform: rotate(270deg);
+        left: -1px;
+        font-weight: 800;
+        font-size: 15px;
+    }
+
+    .nav {
+        @include vertical-align(absolute);
+        font-weight: 100;
+
+        li {
+            padding-bottom: 30px;
+            list-style-type: none;
+
+            a {
+                display: block;
+                text-decoration: none;
+                color: inherit;
+                @include all-transition(0.3s);
+
+                &:hover {
+                    color: #aaa;
+                }
+            }
+        }
+    }
+}
+
+.intro {
+    position: absolute;
+    top: 30%;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    font-size: 45px;
+    text-align: center;
+    font-style: italic;
+}
